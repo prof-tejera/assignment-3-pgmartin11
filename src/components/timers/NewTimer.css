@@ -1,0 +1,45 @@
+.setter-wrapper {
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  max-width: 220px;
+}
+
+.config-panel span.time-setter-title {
+  display: inline-block;
+  min-width: 150px;
+}
+
+.config-panel span.type-label {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.config-panel {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.back-to-workout {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+
+button.add-timer-submit {
+    width: 242px;
+    padding: 5px;
+    background-color: #ced5e0;
+}
+
+@media (min-width: 855px) {
+  .config-panel {
+    max-width: 28%;
+    margin: 0 auto;
+  }
+
+  .back-to-workout {
+    top: 10px;
+  }
+}
