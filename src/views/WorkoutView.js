@@ -73,6 +73,10 @@ const WorkoutView = () => {
 
   const pauseLabel = isPaused ? "Resume" : "Pause";
 
+console.log('isPaused',isPaused, 'isStopped', isStopped);
+console.log('count', count)
+console.log('activeTimerIdx', activeTimerIdx)
+
   return (
     <>
       {timers.length > 0 && (
@@ -85,17 +89,23 @@ const WorkoutView = () => {
                   const newTs = timers.map((timer, i) => {
                     return { ...timer, isRunning: false, isCompleted: false };
                   });
+
+                  let idx = activeTimerIdx;
+                  if (timers.length <= activeTimerIdx + 1) {
+                    idx = 0;
+                  }
+
                   setTimers(newTs);
-                  setCount(timers[0].startVal);
+                  setCount(timers[idx].startVal);
 
-                  if (timers[0].title == "XY" || timers[0].title == "Tabata") {
-                    setRound(timers[0].roundStartVal);
+                  if (timers[idx].title == "XY" || timers[idx].title == "Tabata") {
+                    setRound(timers[idx].roundStartVal);
                   }
-                  if (timers[0].title == "Tabata") {
-                    setInterv(timers[0].intervalStartVal);
+                  if (timers[idx].title == "Tabata") {
+                    setInterv(timers[idx].intervalStartVal);
                   }
 
-                  setActiveTimerIdx(0);
+                  setActiveTimerIdx(idx);
                   setStopped(false);
                   setPaused(false);
                 }}
