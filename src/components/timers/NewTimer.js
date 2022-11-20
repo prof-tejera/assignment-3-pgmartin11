@@ -9,12 +9,8 @@ import {
   decrementHelper,
   calcSeconds,
 } from "../../utils/helpers";
-import { TimerContext } from "./TimerProvider";
-import Stopwatch from "./Stopwatch";
-import Countdown from "./Countdown";
-import XY from "./XY";
-import Tabata from "./Tabata";
 import "./NewTimer.css";
+import { TimerContext } from "./TimerProvider";
 
 const NewTimer = () => {
   const navigate = useNavigate();
@@ -56,7 +52,6 @@ const NewTimer = () => {
   const addTimer = () => {
     let timerData = {
       title: "",
-      component: "",
       startVal: "",
       endVal: "",
       roundStartVal: "",
@@ -70,19 +65,16 @@ const NewTimer = () => {
 
     switch (type) {
       case "Stopwatch":
-        timerData.component = Stopwatch;
         timerData.startVal = 0;
         timerData.endVal = calcSeconds(countHrs, countMins, countSecs);
         timerData.timerSecs = timerData.endVal;
         break;
       case "Countdown":
-        timerData.component = Countdown;
         timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
         timerData.endVal = 0;
         timerData.timerSecs = timerData.startVal;
         break;
       case "XY":
-        timerData.component = XY;
         timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
         timerData.endVal = 0;
         timerData.roundStartVal = countRounds;
@@ -90,7 +82,6 @@ const NewTimer = () => {
         timerData.timerSecs = timerData.startVal * timerData.roundStartVal;
         break;
       case "Tabata":
-        timerData.component = Tabata;
         timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
         timerData.endVal = 0;
         timerData.intervalStartVal = calcSeconds(

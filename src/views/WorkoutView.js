@@ -3,6 +3,10 @@ import { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 import { PATHS } from "../constants";
+import Stopwatch from "../components/timers/Stopwatch";
+import Countdown from "../components/timers/Countdown";
+import XY from "../components/timers/XY";
+import Tabata from "../components/timers/Tabata";
 import TimerBtn from "../components/generic/TimerBtn";
 import {
   calcWorkoutTime,
@@ -68,6 +72,28 @@ const WorkoutView = () => {
     const buf = timers.filter((timer, i) => i !== idx);
     setTimers(buf);
   };
+
+  const setTimerComponent = (timerData, idx) => {
+    let timerComponent;
+
+    switch(timerData.title) {
+      case 'Stopwatch':
+        timerComponent = <Stopwatch {...timerData} isRunning={idx === activeTimerIdx} />;
+        break;
+      case 'Countdown':
+        timerComponent = <Countdown {...timerData} isRunning={idx === activeTimerIdx} />;
+        break;
+      case 'XY': 
+        timerComponent = <XY {...timerData} isRunning={idx === activeTimerIdx} />;
+        break;
+      case 'Tabata':
+        timerComponent = <Tabata {...timerData} isRunning={idx === activeTimerIdx} />;
+        break;
+      default:
+    }
+
+    return timerComponent;
+  }
 
   const isWorkoutDone = isWorkoutCompleted(timers);
 
@@ -205,10 +231,7 @@ console.log('activeTimerIdx', activeTimerIdx);
             )}
             <Timer key={`timer-${timerData.title}-${idx}`}>
               <TimerTitle>{timerData.title}</TimerTitle>
-              <timerData.component
-                {...timerData}
-                isRunning={idx === activeTimerIdx}
-              />
+              {setTimerComponent(timerData, idx)}
             </Timer>
           </div>
         ))}
