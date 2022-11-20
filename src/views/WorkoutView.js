@@ -73,9 +73,7 @@ const WorkoutView = () => {
 
   const pauseLabel = isPaused ? "Resume" : "Pause";
 
-console.log('isPaused',isPaused, 'isStopped', isStopped);
-console.log('count', count)
-console.log('activeTimerIdx', activeTimerIdx)
+console.log('activeTimerIdx', activeTimerIdx);
 
   return (
     <>
@@ -90,19 +88,22 @@ console.log('activeTimerIdx', activeTimerIdx)
                     return { ...timer, isRunning: false, isCompleted: false };
                   });
 
-                  let idx = activeTimerIdx;
-                  if (timers.length <= activeTimerIdx + 1) {
-                    idx = 0;
-                  }
+                  let idx = activeTimerIdx == null ? 0 : activeTimerIdx;
 
                   setTimers(newTs);
-                  setCount(timers[idx].startVal);
+                  if (count == null) {
+                    setCount(timers[idx].startVal);
+                  }
 
                   if (timers[idx].title == "XY" || timers[idx].title == "Tabata") {
-                    setRound(timers[idx].roundStartVal);
+                    if (round == null) {
+                      setRound(timers[idx].roundStartVal);
+                    }
                   }
                   if (timers[idx].title == "Tabata") {
-                    setInterv(timers[idx].intervalStartVal);
+                    if (interval == null) {
+                      setInterv(timers[idx].intervalStartVal);
+                    }
                   }
 
                   setActiveTimerIdx(idx);
@@ -126,8 +127,10 @@ console.log('activeTimerIdx', activeTimerIdx)
                 });
                 setTimers(newTs);
                 setStopped(true);
-                // fix a race condition by setting index out of range
-                setActiveTimerIdx(999);
+                setActiveTimerIdx(null);
+                setCount(null);
+                setRound(null);
+                setInterval(null);
               }}
             />
             <TimerBtn
