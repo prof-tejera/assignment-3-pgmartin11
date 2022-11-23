@@ -21,16 +21,16 @@ const Container = styled.div`
 const App = () => {
   return (
     <Container>
-      <TimerProvider>
-        <Router basename="/assignment-3-pgmartin11">
+      <Router basename="/assignment-3-pgmartin11">
+        <TimerProvider>
           <Routes>
             <Route path={PATHS.HOME} element={<WorkoutView />} />
             <Route path={PATHS.ADD} element={<NewTimer />} />
             <Route path={PATHS.DOCS} element={<DocumentationView />} />
             <Route path="*" element={<Navigate to={PATHS.HOME} />} />
           </Routes>
-        </Router>
-      </TimerProvider>
+        </TimerProvider>
+      </Router>
     </Container>
   );
 };
