@@ -1,13 +1,6 @@
 import React, { useState, createContext } from "react";
+import { useSearchParams } from 'react-router-dom';
 import { timers } from "../../views/WorkoutView";
-
-/* keep these for now - remove when initial_timers structure removed */
-import Stopwatch from "./Stopwatch";
-import Countdown from "./Countdown";
-import XY from "./XY";
-import Tabata from "./Tabata";
-/************************/
-
 import { usePersistedStatePolling } from '../../hooks';
 
 export const TimerContext = createContext({});
@@ -15,20 +8,23 @@ export const TimerContext = createContext({});
 const TimerProvider = ({ children }) => {
   // workout - hard-coded for now
   const initial_timers = [
-    { title: "Stopwatch", component: Stopwatch, startVal: 0, endVal: 5, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 5, isRunning: false, isCompleted: false },
-    { title: "Countdown", component: Countdown, startVal: 8, endVal: 0, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 8, isRunning: false, isCompleted: false },     
-    { title: "XY", component: XY, startVal: 10, endVal: 0, roundStartVal: 3, roundEndVal: 1, intervalStartVal: null, intervalEndVal: null, timerSecs: 30, isRunning: false, isCompleted: false },
-    { title: "Tabata", component: Tabata, startVal: 10, endVal: 0, roundStartVal: 3, roundEndVal: 1, intervalStartVal: 5, intervalEndVal: 0, timerSecs: 45, isRunning: false, isCompleted: false },
+    { title: "Countdown", startVal: 8, endVal: 0, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 8, isRunning: false, isCompleted: false },     
+    { title: "Stopwatch", startVal: 0, endVal: 9, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 9, isRunning: false, isCompleted: false },
+    { title: "XY", startVal: 5, endVal: 0, roundStartVal: 2, roundEndVal: 1, intervalStartVal: null, intervalEndVal: null, timerSecs: 10, isRunning: false, isCompleted: false },
+    { title: "Tabata", startVal: 10, endVal: 0, roundStartVal: 3, roundEndVal: 1, intervalStartVal: 5, intervalEndVal: 0, timerSecs: 45, isRunning: false, isCompleted: false },
   ];
 
-  const [count, setCount] = usePersistedStatePolling('count', 0);
-  const [round, setRound] = usePersistedStatePolling('round', 0);
-  const [interval, setInterv] = usePersistedStatePolling('interval', 0);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  let workoutConfig = searchParams.get('myWorkout') === null ? initial_timers : JSON.parse(decodeURIComponent(searchParams.get('myWorkout')));
+//  let workoutConfig = searchParams.get('myWorkout') === null ? []: JSON.parse(decodeURIComponent(searchParams.get('myWorkout')));
+
+  const [count, setCount] = usePersistedStatePolling('count', null);
+  const [round, setRound] = usePersistedStatePolling('round', null);
+  const [interval, setInterv] = usePersistedStatePolling('interval', null);
   const [remainingTime, setRemainingTime] = usePersistedStatePolling('remainingTime', 0);
   const [activeTimerIdx, setActiveTimerIdx] = usePersistedStatePolling('activeTimerIdx', 0);
-  const [timers, setTimers] = useState(initial_timers);
-  //const [timers, setTimers] = usePersistedStatePolling('timer', initial_timers);
-  //const [timers, setTimers] = useState([]);
+  const [timers, setTimers] = useState(workoutConfig);
   const [isPaused, setPaused] = usePersistedStatePolling('isPaused', false);
   const [isStopped, setStopped] = usePersistedStatePolling('isStopped', true);
 
@@ -66,6 +62,11 @@ const TimerProvider = ({ children }) => {
       });
       setTimers(newTs);
       setStopped(true);
+      //XXX
+      setActiveTimerIdx(null);
+      setCount(null);
+      setRound(null);
+      setInterval(null);
     }
   };
 
@@ -88,6 +89,8 @@ const TimerProvider = ({ children }) => {
         setTimers,
         remainingTime,
         setRemainingTime,
+        searchParams,
+        setSearchParams,
         dispatcher,
       }}
     >
