@@ -100,21 +100,10 @@ const WorkoutView = () => {
 
   const pauseLabel = isPaused ? "Resume" : "Pause";
 
-//XXX while debugging
-const query_timers = [
-  { title: "Countdown", startVal: 8, endVal: 0, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 8, isRunning: false, isCompleted: false },     
-  { title: "Stopwatch", startVal: 0, endVal: 9, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 9, isRunning: false, isCompleted: false },
-];
-const handleClick = () => {
-  setSearchParams({myWorkout: encodeURIComponent(JSON.stringify(query_timers))});
-};
-
 console.log('activeTimerIdx', activeTimerIdx);
 
   return (
     <>
-<button onClick={handleClick}>Update Query params</button>
-
       {timers.length > 0 && (
         <div className="main-wrap">
           <div className="control-btn-wrapper">
