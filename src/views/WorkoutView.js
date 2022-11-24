@@ -72,6 +72,7 @@ const WorkoutView = () => {
   const removeTimer = (idx) => {
     const buf = timers.filter((timer, i) => i !== idx);
     setTimers(buf);
+    setSearchParams({ ...searchParams, myWorkout: encodeURIComponent(JSON.stringify(buf)) });
   };
 
   const setTimerComponent = (timerData, idx) => {
