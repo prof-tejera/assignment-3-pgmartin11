@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../constants";
 import TimerBtn from "../../components/generic/TimerBtn";
@@ -14,7 +15,7 @@ import { TimerContext } from "./TimerProvider";
 
 const NewTimer = () => {
   const navigate = useNavigate();
-  const { timers, setTimers } = useContext(TimerContext);
+  const { timers, setTimers, searchParams, setSearchParams } = useContext(TimerContext);
 
   const [type, setType] = useState("");
   const [countHrs, setCountHrs] = useState(0);
@@ -99,6 +100,7 @@ const NewTimer = () => {
 
     const buf = [...timers, timerData];
     setTimers(buf);
+    setSearchParams(...searchParams, { myWorkout: encodeURIComponent(JSON.stringify(buf)) });
 
     // reset values
     setType("");
@@ -189,8 +191,8 @@ const NewTimer = () => {
           Add Timer
         </button>
       )}
-      <TimerBtn handler={() => navigate(PATHS.HOME)} label="Back to workout" />
-      <TimerBtn handler={() => navigate(PATHS.DOCS)} label="Documentation" />
+      <TimerBtn handler={() => navigate({ pathname: PATHS.HOME, search: `?${searchParams}` }) } label="Back to workout" />
+      <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` }) } label="Documentation" />
     </div>
   );
 };

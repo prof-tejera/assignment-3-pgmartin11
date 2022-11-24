@@ -1,5 +1,4 @@
-import React from "react";
-import { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 import { PATHS } from "../constants";
@@ -194,9 +193,9 @@ console.log('activeTimerIdx', activeTimerIdx);
           </div>
         </div>
       )}
-      <TimerBtn handler={() => navigate(PATHS.DOCS)} label="Documentation" />
+      <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` })} label="Documentation" />
       {timers.length > 0 && isStopped && (
-        <TimerBtn handler={() => navigate(PATHS.ADD)} label="Add Timer" />
+        <TimerBtn handler={() => navigate({ pathname: PATHS.ADD, search: `?${searchParams}` })} label="Add Timer" />
       )}
       {timers.length > 0 && isStopped && !isWorkoutDone && (
         <span className="t-total">

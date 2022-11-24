@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../constants";
 import DocumentComponent from "../components/documentation/DocumentComponent";
+import { TimerContext } from "../components/timers/TimerProvider";
 
 import Loading from "../components/generic/Loading";
 import DisplayTime from "../components/generic/DisplayTime";
@@ -24,11 +25,12 @@ const Title = styled.div`
  */
 const Documentation = () => {
   const navigate = useNavigate();
+  const { searchParams, setSearchParams } = useContext(TimerContext);
 
   return (
     <Container>
       <div>
-        <TimerBtn handler={() => navigate(PATHS.HOME)} label="To Workout" />
+        <TimerBtn handler={() => navigate({ pathname: PATHS.HOME, search: `?${searchParams}` }) } label="Back to workout" />
         <Title>Documentation</Title>
         <DocumentComponent
           title="DisplayTime: show counter value in hours, minutes, seconds format"
