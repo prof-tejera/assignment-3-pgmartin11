@@ -63,6 +63,13 @@ const WorkoutView = () => {
   const workoutRunningTime = useRef(0);
 
   useEffect(() => {
+    if (searchParams.get('in_progress')) {
+      setStopped(false);
+      setPaused(false);
+    }
+  }, []);
+
+  useEffect(() => {
     if (isStopped) {
       workoutRunningTime.current = calcWorkoutTime(timers);
       setRemainingTime(workoutRunningTime.current);
@@ -103,16 +110,6 @@ const WorkoutView = () => {
 
 console.log('activeTimerIdx', activeTimerIdx);
 
-
- // if (searchParams.get('inProgress')) {
-//console.log('**** inProgress');
-    //setActiveTimerIdx(idx);
- //   setStopped(false);
- //   setPaused(false);
- // } else {
- //   console.log('**** not inProgress');
-//  }
-
   return (
     <>
       {timers.length > 0 && (
@@ -139,12 +136,12 @@ console.log('activeTimerIdx', activeTimerIdx);
                     }
                   }
               /*
-              * below doesn't work, myWorkout query param gets clobbered
+               * below doesn't work, myWorkout query param gets clobbered
                   setSearchParams(prevSearch => {
-                    return { ...prevSearch, inProgress: 1 };
+                    return { ...prevSearch, in_progress: 1 };
                   });
                */
-                  setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)), inProgress: 1 });
+                  setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)), in_progress: 1 });
                   setActiveTimerIdx(idx);
                   setStopped(false);
                   setPaused(false);

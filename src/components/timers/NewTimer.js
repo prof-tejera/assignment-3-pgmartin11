@@ -100,7 +100,7 @@ const NewTimer = () => {
 
     const buf = [...timers, timerData];
     setTimers(buf);
-    setSearchParams({ ...searchParams, myWorkout: encodeURIComponent(JSON.stringify(buf)) });
+    setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
 
     // reset values
     setType("");
