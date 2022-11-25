@@ -180,8 +180,15 @@ button:disabled {
 }
 
 button.documentation,
-button.to-workout {
+button.to-workout,
+.doc-wrapper > button.history {
     position: fixed;
     top: 10px;
+    right: 15px;
+}
+
+button.history {
+    position: fixed;
+    top: 35px;
     right: 15px;
 }
