@@ -67,6 +67,7 @@ const TimerProvider = ({ children }) => {
       setCount(null);
       setRound(null);
       setInterval(null);
+      setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
     }
   };
 

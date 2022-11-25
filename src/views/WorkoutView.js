@@ -103,6 +103,16 @@ const WorkoutView = () => {
 
 console.log('activeTimerIdx', activeTimerIdx);
 
+
+ // if (searchParams.get('inProgress')) {
+//console.log('**** inProgress');
+    //setActiveTimerIdx(idx);
+ //   setStopped(false);
+ //   setPaused(false);
+ // } else {
+ //   console.log('**** not inProgress');
+//  }
+
   return (
     <>
       {timers.length > 0 && (
@@ -128,7 +138,13 @@ console.log('activeTimerIdx', activeTimerIdx);
                       setInterv(timers[idx].intervalStartVal);
                     }
                   }
-
+              /*
+              * below doesn't work, myWorkout query param gets clobbered
+                  setSearchParams(prevSearch => {
+                    return { ...prevSearch, inProgress: 1 };
+                  });
+               */
+                  setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)), inProgress: 1 });
                   setActiveTimerIdx(idx);
                   setStopped(false);
                   setPaused(false);
@@ -154,6 +170,7 @@ console.log('activeTimerIdx', activeTimerIdx);
                 setCount(null);
                 setRound(null);
                 setInterval(null);
+                setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
               }}
             />
             <TimerBtn
