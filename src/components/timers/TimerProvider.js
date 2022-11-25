@@ -2,8 +2,9 @@ import React, { useState, createContext } from "react";
 import { useSearchParams } from 'react-router-dom';
 import { timers } from "../../views/WorkoutView";
 import { usePersistedStatePolling } from '../../hooks';
-
+import { formattedDateTime } from '../../utils/helpers';
 export const TimerContext = createContext({});
+
 
 const TimerProvider = ({ children }) => {
   // workout - hard-coded for now
@@ -68,7 +69,7 @@ const TimerProvider = ({ children }) => {
       setCount(null);
       setRound(null);
       setInterval(null);
-      setHistory([...history, timers]);
+      setHistory([...history, { date_time: formattedDateTime(), timers }]);
       setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
     }
   };
