@@ -198,6 +198,7 @@ console.log('activeTimerIdx', activeTimerIdx);
         </div>
       )}
       <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` })} label="Documentation" />
+      <TimerBtn handler={() => navigate({ pathname: PATHS.HISTORY, search: `?${searchParams}` }) } label="History" />
       {timers.length > 0 && isStopped && (
         <TimerBtn handler={() => navigate({ pathname: PATHS.ADD, search: `?${searchParams}` })} label="Add Timer" />
       )}

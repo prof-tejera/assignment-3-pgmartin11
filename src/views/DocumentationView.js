@@ -29,8 +29,9 @@ const Documentation = () => {
 
   return (
     <Container>
-      <div>
+      <div className="doc-wrapper">
         <TimerBtn handler={() => navigate({ pathname: PATHS.HOME, search: `?${searchParams}` }) } label="Back to workout" />
+        <TimerBtn handler={() => navigate({ pathname: PATHS.HISTORY, search: `?${searchParams}` }) } label="History" />
         <Title>Documentation</Title>
         <DocumentComponent
           title="DisplayTime: show counter value in hours, minutes, seconds format"

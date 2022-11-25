@@ -10,6 +10,7 @@ import TimerProvider from "./components/timers/TimerProvider";
 import NewTimer from "./components/timers/NewTimer";
 import WorkoutView from "./views/WorkoutView";
 import DocumentationView from "./views/DocumentationView";
+import HistoryView from "./views/HistoryView";
 import { PATHS } from "./constants";
 
 const Container = styled.div`
@@ -27,6 +28,7 @@ const App = () => {
             <Route path={PATHS.HOME} element={<WorkoutView />} />
             <Route path={PATHS.ADD} element={<NewTimer />} />
             <Route path={PATHS.DOCS} element={<DocumentationView />} />
+            <Route path={PATHS.HISTORY} element={<HistoryView />} />
             <Route path="*" element={<Navigate to={PATHS.HOME} />} />
           </Routes>
         </TimerProvider>
