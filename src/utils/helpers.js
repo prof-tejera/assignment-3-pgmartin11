@@ -81,3 +81,14 @@ export const calcTotalFastForwardTime = (timers, activeTimerIdx) => {
 export const isWorkoutCompleted = (timers) => {
   return !timers.some((timer) => timer.isCompleted === false);
 };
+
+/*
+ * get current day and time in mm/dd/yy hh:mm:ss format
+ *
+ * adapted from https://stackoverflow.com/questions/30158574/how-to-convert-result-from-date-now-to-yyyy-mm-dd-hhmmss-ffff
+ */
+export const formattedDateTime = () => {
+   var d = new Date();
+   return (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear() +
+             " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+}
