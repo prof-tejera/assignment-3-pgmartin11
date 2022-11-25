@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../constants";
-import DocumentComponent from "../components/documentation/DocumentComponent";
 import { TimerContext } from "../components/timers/TimerProvider";
-
+import { calcWorkoutTime } from "../utils/helpers";
+import DocumentComponent from "../components/documentation/DocumentComponent";
 import TimerBtn from "../components/generic/TimerBtn";
 
 
@@ -20,7 +20,17 @@ const Title = styled.div`
 
 const History = () => {
   const navigate = useNavigate();
-  const { searchParams, setSearchParams } = useContext(TimerContext);
+  const { timers, history, setHistory, searchParams, setSearchParams } = useContext(TimerContext);
+
+console.log('*** history',history);
+
+history.forEach(workout => {
+  console.log('********');
+  workout.forEach(timer => {
+    console.log('timer', timer);
+  });
+  console.log('********');
+})
 
   return (
     <Container>

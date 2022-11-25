@@ -24,7 +24,8 @@ const TimerProvider = ({ children }) => {
   const [interval, setInterv] = usePersistedStatePolling('interval', null);
   const [remainingTime, setRemainingTime] = usePersistedStatePolling('remainingTime', 0);
   const [activeTimerIdx, setActiveTimerIdx] = usePersistedStatePolling('activeTimerIdx', 0);
-  const [timers, setTimers] = useState(workoutConfig);
+  const [timers, setTimers] = useState(workoutConfig); // usePersistedStatePolling ??
+  const [history, setHistory] = usePersistedStatePolling('history', []);
   const [isPaused, setPaused] = usePersistedStatePolling('isPaused', false);
   const [isStopped, setStopped] = usePersistedStatePolling('isStopped', true);
 
@@ -67,6 +68,7 @@ const TimerProvider = ({ children }) => {
       setCount(null);
       setRound(null);
       setInterval(null);
+      setHistory([...history, timers]);
       setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
     }
   };
@@ -92,6 +94,8 @@ const TimerProvider = ({ children }) => {
         setRemainingTime,
         searchParams,
         setSearchParams,
+        history, 
+        setHistory,
         dispatcher,
       }}
     >
