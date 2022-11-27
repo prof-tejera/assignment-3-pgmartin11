@@ -9,13 +9,14 @@ import {
   incrementHelper,
   decrementHelper,
   calcSeconds,
+  makeId
 } from "../../utils/helpers";
 import "./NewTimer.css";
 import { TimerContext } from "./TimerProvider";
 
 const NewTimer = () => {
   const navigate = useNavigate();
-  const { timers, setTimers, searchParams, setSearchParams } = useContext(TimerContext);
+  const { createTimer, searchParams } = useContext(TimerContext);
 
   const [type, setType] = useState("");
   const [countHrs, setCountHrs] = useState(0);
@@ -52,6 +53,7 @@ const NewTimer = () => {
 
   const addTimer = () => {
     let timerData = {
+      id: "",
       title: "",
       startVal: "",
       endVal: "",
@@ -62,6 +64,8 @@ const NewTimer = () => {
       isRunning: false,
       isCompleted: false,
     };
+
+    timerData.id = makeId();
     timerData.title = type;
 
     switch (type) {
@@ -98,9 +102,7 @@ const NewTimer = () => {
           timerData.roundStartVal;
     }
 
-    const buf = [...timers, timerData];
-    setTimers(buf);
-    setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
+    createTimer(timerData);
 
     // reset values
     setType("");
