@@ -36,10 +36,10 @@ const addLeadingZeros = (num, totalLength = 2) => {
 /*
  * derive hours, minutes, seconds from seconds passed in
  */
-export const calcHMS = (count) => {
-  const timerHrs = addLeadingZeros(Math.floor(count / (60 * 60))),
-    timerMins = addLeadingZeros(Math.floor((count - timerHrs * 60 * 60) / 60)),
-    timerSecs = addLeadingZeros(count - timerHrs * 60 * 60 - timerMins * 60);
+export const calcHMS = (count, omitLeadingZeros=false) => {
+  const timerHrs = omitLeadingZeros ? Math.floor(count / (60 * 60)) : addLeadingZeros(Math.floor(count / (60 * 60))),
+    timerMins = omitLeadingZeros ? Math.floor((count - timerHrs * 60 * 60) / 60) : addLeadingZeros(Math.floor((count - timerHrs * 60 * 60) / 60)),
+    timerSecs = omitLeadingZeros ? count - timerHrs * 60 * 60 - timerMins * 60 : addLeadingZeros(count - timerHrs * 60 * 60 - timerMins * 60);
 
   return { timerHrs, timerMins, timerSecs };
 };
@@ -92,7 +92,6 @@ export const formattedDateTime = () => {
    return (d.getMonth()+1) + "/" + d.getDate() + "/" + d.getFullYear() +
              " " + d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 }
-
 
 /*
  * from Lecture 8 notes
