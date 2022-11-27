@@ -1,4 +1,3 @@
-
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { PATHS } from "../../constants";
@@ -18,8 +17,10 @@ const InnerEditTimer = ({ timer }) => {
   const navigate = useNavigate();
   const { updateTimer, searchParams } = useContext(TimerContext);
 
+  const type = timer.title;
+
   let tmrSecs = 0;
-  switch (timer.title) {
+  switch (type) {
     case 'Stopwatch':
       tmrSecs = timer.endVal;
       break;
@@ -30,10 +31,8 @@ const InnerEditTimer = ({ timer }) => {
     break;
     default:
   }
-
   const { timerHrs, timerMins, timerSecs } = calcHMS(tmrSecs, true);
 
-  const [type, setType] = useState(timer.title);
   const [countHrs, setCountHrs] = useState(timerHrs);
   const [countMins, setCountMins] = useState(timerMins);
   const [countSecs, setCountSecs] = useState(timerSecs);
@@ -79,6 +78,7 @@ const InnerEditTimer = ({ timer }) => {
 
   const modifyTimer = () => {
     let timerData = {
+      id: "",
       title: "",
       startVal: "",
       endVal: "",
@@ -89,7 +89,9 @@ const InnerEditTimer = ({ timer }) => {
       isRunning: false,
       isCompleted: false,
     };
-    timerData.title = type;
+
+    timerData.id = timer.id;
+    timerData.title = timer.title;
 
     switch (type) {
       case "Stopwatch":
