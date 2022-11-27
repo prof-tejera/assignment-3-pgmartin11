@@ -9,24 +9,49 @@ import {
   incrementHelper,
   decrementHelper,
   calcSeconds,
+  calcHMS
 } from "../../utils/helpers";
 import "./NewTimer.css";
 import { TimerContext } from "./TimerProvider";
 
-const EditTimer = () => {
-  const { id } = useParams();
-
+const InnerEditTimer = ({ timer }) => {
   const navigate = useNavigate();
-  const { timers, setTimers, searchParams, setSearchParams } = useContext(TimerContext);
+  const { updateTimer, searchParams } = useContext(TimerContext);
 
-  const [type, setType] = useState("");
-  const [countHrs, setCountHrs] = useState(0);
-  const [countMins, setCountMins] = useState(0);
-  const [countSecs, setCountSecs] = useState(0);
-  const [intervalHrs, setIntervalHrs] = useState(0);
-  const [intervalMins, setIntervalMins] = useState(0);
-  const [intervalSecs, setIntervalSecs] = useState(0);
-  const [countRounds, setCountRounds] = useState(1);
+  let tmrSecs = 0;
+  switch (timer.title) {
+    case 'Stopwatch':
+      tmrSecs = timer.endVal;
+      break;
+    case 'Countdown':
+    case 'XY':
+    case 'Tabata':
+      tmrSecs = timer.startVal;
+    break;
+    default:
+  }
+
+  const { timerHrs, timerMins, timerSecs } = calcHMS(tmrSecs, true);
+
+  const [type, setType] = useState(timer.title);
+  const [countHrs, setCountHrs] = useState(timerHrs);
+  const [countMins, setCountMins] = useState(timerMins);
+  const [countSecs, setCountSecs] = useState(timerSecs);
+
+  let timerIntervalHrs = 0,
+      timerIntervalMins = 0,
+      timerIntervalSecs = 0;
+  if (timer.title == 'Tabata') {
+    const { timerHrs, timerMins, timerSecs } = calcHMS(timer.intervalStartVal, true);
+    timerIntervalHrs = timerHrs;
+    timerIntervalMins = timerMins;
+    timerIntervalSecs = timerSecs;
+  }
+
+  const [intervalHrs, setIntervalHrs] = useState(timerIntervalHrs);
+  const [intervalMins, setIntervalMins] = useState(timerIntervalMins);
+  const [intervalSecs, setIntervalSecs] = useState(timerIntervalSecs);
+  const [countRounds, setCountRounds] = useState(timer.roundStartVal);
 
   const setterBtnData = {
     hoursLabel: "Hours",
@@ -52,7 +77,7 @@ const EditTimer = () => {
     setCountSecs: setIntervalSecs,
   };
 
-  const addTimer = () => {
+  const modifyTimer = () => {
     let timerData = {
       title: "",
       startVal: "",
@@ -100,19 +125,7 @@ const EditTimer = () => {
           timerData.roundStartVal;
     }
 
-    const buf = [...timers, timerData];
-    setTimers(buf);
-    setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
-
-    // reset values
-    setType("");
-    setCountHrs(0);
-    setCountMins(0);
-    setCountSecs(0);
-    setIntervalHrs(0);
-    setIntervalMins(0);
-    setIntervalSecs(0);
-    setCountRounds(1);
+    updateTimer(timerData);
   };
 
   let setters;
@@ -167,38 +180,31 @@ const EditTimer = () => {
       );
   }
 
-console.log(`id: ${id}`)
   return (
     <div className="config-panel">
       <h1>Edit Timer</h1>
-      <label>
-        <span className="type-label">Choose type:</span>
-        <select
-          value={type}
-          onChange={(e) => {
-            setType(e.target.value);
-          }}
-        >
-          <option value="">--</option>
-          <option value="Countdown">Countdown</option>
-          <option value="Stopwatch">Stopwatch</option>
-          <option value="XY">XY</option>
-          <option value="Tabata">Tabata</option>
-        </select>
-      </label>
+      <h2>{timer.title} Timer</h2>
+      <div className="setter-wrapper">{setters}</div>
       <br />
-      {type && <div className="setter-wrapper">{setters}</div>}
-      <br />
-      {type && (
-        <button className="add-timer-submit" onClick={addTimer}>
-          Add Timer
-        </button>
-      )}
+      <button className="add-timer-submit" onClick={modifyTimer}>
+        Update Timer
+      </button>
       <TimerBtn handler={() => navigate({ pathname: PATHS.HOME, search: `?${searchParams}` }) } label="Back to workout" />
       <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` }) } label="Documentation" />
       <TimerBtn handler={() => navigate({ pathname: PATHS.HISTORY, search: `?${searchParams}` }) } label="History" />
     </div>
   );
 };
+
+const EditTimer = () => {
+  const { id } = useParams();
+  const { retrieveTimer } = useContext(TimerContext);
+  const timer = retrieveTimer(id);
+
+  if (!timer) return <div>Timer Not Found</div>;
+
+  return <InnerEditTimer timer={timer} />;
+
+}
 
 export default EditTimer;
