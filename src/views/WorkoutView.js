@@ -54,6 +54,7 @@ const WorkoutView = () => {
     setActiveTimerIdx,
     timers,
     setTimers,
+    removeTimer,
     remainingTime,
     setRemainingTime,
     searchParams,
@@ -75,12 +76,6 @@ const WorkoutView = () => {
       setRemainingTime(workoutRunningTime.current);
     }
   }, [timers, isStopped]);
-
-  const removeTimer = (idx) => {
-    const buf = timers.filter((timer, i) => i !== idx);
-    setTimers(buf);
-    setSearchParams({ ...searchParams, myWorkout: encodeURIComponent(JSON.stringify(buf)) });
-  };
 
   const setTimerComponent = (timerData, idx) => {
     let timerComponent;
@@ -237,7 +232,7 @@ console.log('activeTimerIdx', activeTimerIdx);
             {isStopped && (
               <TimerBtn
                 key={`del-btn-${timerData.title}-${idx}`}
-                handler={() => removeTimer(idx)}
+                handler={() => removeTimer(timerData.id)}
                 label="X"
               />
             )}
