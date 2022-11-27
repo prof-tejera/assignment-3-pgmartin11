@@ -8,6 +8,7 @@ import {
 import styled from "styled-components";
 import TimerProvider from "./components/timers/TimerProvider";
 import NewTimer from "./components/timers/NewTimer";
+import EditTimer from "./components/timers/EditTimer";
 import WorkoutView from "./views/WorkoutView";
 import DocumentationView from "./views/DocumentationView";
 import HistoryView from "./views/HistoryView";
@@ -27,6 +28,7 @@ const App = () => {
           <Routes>
             <Route path={PATHS.HOME} element={<WorkoutView />} />
             <Route path={PATHS.ADD} element={<NewTimer />} />
+            <Route path={PATHS.EDIT()} element={<EditTimer />} />
             <Route path={PATHS.DOCS} element={<DocumentationView />} />
             <Route path={PATHS.HISTORY} element={<HistoryView />} />
             <Route path="*" element={<Navigate to={PATHS.HOME} />} />
