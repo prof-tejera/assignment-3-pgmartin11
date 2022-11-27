@@ -33,11 +33,9 @@ const History = () => {
       <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` }) } label="Documentation" />
       {history.map((workout, i) => {
         return (
-          <>
-          <div class="history-wrapper">
-            <HistoryComponent key={i} workout={workout} />
+          <div key={`w-${i}`} className="history-wrapper">
+            <HistoryComponent workout={workout} />
           </div>
-          </>
         );
       })
       }
