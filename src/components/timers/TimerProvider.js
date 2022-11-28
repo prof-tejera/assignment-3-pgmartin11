@@ -88,7 +88,7 @@ const TimerProvider = ({ children }) => {
     setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
   }
 
-  const removeTimer = (id) => {
+  const removeTimer = id => {
     const buf = timers.filter(timer => timer.id != id);
     setTimers(buf);
     setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
