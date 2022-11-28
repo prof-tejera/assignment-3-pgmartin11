@@ -8,7 +8,11 @@ import {
   incrementHelper,
   decrementHelper,
   calcSeconds,
-  calcHMS
+  calcHMS,
+  buildSetterBtnData,
+  buildSetterIntervalBtnData,
+  getInitialTimerData,
+  setTimerDataByType
 } from "../../utils/helpers";
 import "./NewTimer.css";
 import { TimerContext } from "./TimerProvider";
@@ -52,80 +56,41 @@ const InnerEditTimer = ({ timer }) => {
   const [intervalSecs, setIntervalSecs] = useState(timerIntervalSecs);
   const [countRounds, setCountRounds] = useState(timer.roundStartVal);
 
-  const setterBtnData = {
-    hoursLabel: "Hours",
-    minutesLabel: "Minutes",
-    secondsLabel: "Seconds",
+  const setterBtnData = buildSetterBtnData({
     countHrs,
     countMins,
     countSecs,
     setCountHrs,
     setCountMins,
     setCountSecs,
-  };
+  });
 
-  const setterIntervalBtnData = {
-    hoursLabel: "Interval Hours",
-    minutesLabel: "Interval Minutes",
-    secondsLabel: "Interval Seconds",
-    countHrs: intervalHrs,
-    countMins: intervalMins,
-    countSecs: intervalSecs,
-    setCountHrs: setIntervalHrs,
-    setCountMins: setIntervalMins,
-    setCountSecs: setIntervalSecs,
-  };
+  const setterIntervalBtnData = buildSetterIntervalBtnData({
+    intervalHrs,
+    intervalMins,
+    intervalSecs,
+    setIntervalHrs,
+    setIntervalMins,
+    setIntervalSecs,
+  });
 
   const modifyTimer = () => {
-    let timerData = {
-      id: "",
-      title: "",
-      startVal: "",
-      endVal: "",
-      roundStartVal: "",
-      roundEndVal: "",
-      intervalStartVal: "",
-      intervalEndVal: "",
-      isRunning: false,
-      isCompleted: false,
-    };
+    let timerData = getInitialTimerData();
 
     timerData.id = timer.id;
     timerData.title = timer.title;
-
-    switch (type) {
-      case "Stopwatch":
-        timerData.startVal = 0;
-        timerData.endVal = calcSeconds(countHrs, countMins, countSecs);
-        timerData.timerSecs = timerData.endVal;
-        break;
-      case "Countdown":
-        timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
-        timerData.endVal = 0;
-        timerData.timerSecs = timerData.startVal;
-        break;
-      case "XY":
-        timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
-        timerData.endVal = 0;
-        timerData.roundStartVal = countRounds;
-        timerData.roundEndVal = 1;
-        timerData.timerSecs = timerData.startVal * timerData.roundStartVal;
-        break;
-      case "Tabata":
-        timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
-        timerData.endVal = 0;
-        timerData.intervalStartVal = calcSeconds(
-          intervalHrs,
-          intervalMins,
-          intervalSecs
-        );
-        timerData.intervalEndVal = 0;
-        timerData.roundStartVal = countRounds;
-        timerData.roundEndVal = 1;
-        timerData.timerSecs =
-          (timerData.startVal + timerData.intervalStartVal) *
-          timerData.roundStartVal;
-    }
+    timerData = setTimerDataByType(
+      type, 
+      {
+        countHrs,
+        countMins,
+        countSecs,
+        intervalHrs,
+        intervalMins,
+        intervalSecs,
+      },
+      timerData
+    );
 
     updateTimer(timerData);
   };

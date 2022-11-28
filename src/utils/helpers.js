@@ -105,3 +105,99 @@ export const makeId = () => {
   }
   return result;
 };
+
+
+export const buildSetterBtnData = btnData => {
+  const { countHrs,countMins, countSecs, setCountHrs, setCountMins, setCountSecs } = btnData;
+
+  return {
+    hoursLabel: "Hours",
+    minutesLabel: "Minutes",
+    secondsLabel: "Seconds",
+    countHrs,
+    countMins,
+    countSecs,
+    setCountHrs,
+    setCountMins,
+    setCountSecs
+  };
+}
+
+export const buildSetterIntervalBtnData = intervBtnData => {
+  const { intervalHrs, intervalMins, intervalSecs, setIntervalHrs, setIntervalMins, setIntervalSecs } = intervBtnData;
+
+  return {
+    hoursLabel: "Interval Hours",
+    minutesLabel: "Interval Minutes",
+    secondsLabel: "Interval Seconds",
+    countHrs: intervalHrs,
+    countMins: intervalMins,
+    countSecs: intervalSecs,
+    setCountHrs: setIntervalHrs,
+    setCountMins: setIntervalMins,
+    setCountSecs: setIntervalSecs,
+  };
+}
+
+export const getInitialTimerData = () => {
+  return {
+    id: "",
+    title: "",
+    startVal: "",
+    endVal: "",
+    roundStartVal: "",
+    roundEndVal: "",
+    intervalStartVal: "",
+    intervalEndVal: "",
+    isRunning: false,
+    isCompleted: false,
+  };
+}
+
+export const setTimerDataByType = (type, timerVals, timerData) => {
+  const { 
+    countHrs, 
+    countMins,
+    countSecs,
+    intervalHrs, 
+    intervalMins, 
+    intervalSecs, 
+    countRounds
+  } = timerVals;
+
+  switch (type) {
+    case "Stopwatch":
+      timerData.startVal = 0;
+      timerData.endVal = calcSeconds(countHrs, countMins, countSecs);
+      timerData.timerSecs = timerData.endVal;
+      break;
+    case "Countdown":
+      timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
+      timerData.endVal = 0;
+      timerData.timerSecs = timerData.startVal;
+      break;
+    case "XY":
+      timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
+      timerData.endVal = 0;
+      timerData.roundStartVal = countRounds;
+      timerData.roundEndVal = 1;
+      timerData.timerSecs = timerData.startVal * timerData.roundStartVal;
+      break;
+    case "Tabata":
+      timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
+      timerData.endVal = 0;
+      timerData.intervalStartVal = calcSeconds(
+        intervalHrs,
+        intervalMins,
+        intervalSecs
+      );
+      timerData.intervalEndVal = 0;
+      timerData.roundStartVal = countRounds;
+      timerData.roundEndVal = 1;
+      timerData.timerSecs =
+        (timerData.startVal + timerData.intervalStartVal) *
+        timerData.roundStartVal;
+  }
+
+  return timerData;
+}
