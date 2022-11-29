@@ -103,7 +103,7 @@ const WorkoutView = () => {
 
   const pauseLabel = isPaused ? "Resume" : "Pause";
 
-console.log('activeTimerIdx', activeTimerIdx);
+//console.log('activeTimerIdx', activeTimerIdx);
 
   return (
     <>
@@ -236,6 +236,13 @@ console.log('activeTimerIdx', activeTimerIdx);
                 label="X"
               />
             )}
+            {isStopped && (
+              <TimerBtn
+                key={`edit-btn-${timerData.title}-${idx}`}
+                handler={() => navigate({ pathname: PATHS.EDIT(timerData.id), search: `?${searchParams}` })}
+                label="Edit"
+              />
+            )}            
             <Timer key={`timer-${timerData.title}-${idx}`}>
               <TimerTitle>{timerData.title}</TimerTitle>
               {setTimerComponent(timerData, idx)}
