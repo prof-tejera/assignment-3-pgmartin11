@@ -4,6 +4,7 @@ import { PATHS } from "../../constants";
 import TimerBtn from "../../components/generic/TimerBtn";
 import { IncrementBtn, DecrementBtn } from "../../components/helpers/HMSBtn";
 import SetterButtons from "../../components/helpers/SetterButtons";
+import { buildSetters } from "./NewTimer";
 import {
   incrementHelper,
   decrementHelper,
