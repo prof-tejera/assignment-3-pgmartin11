@@ -88,6 +88,7 @@ const InnerEditTimer = ({ timer }) => {
         intervalHrs,
         intervalMins,
         intervalSecs,
+        countRounds
       },
       timerData
     );

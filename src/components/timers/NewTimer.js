@@ -64,6 +64,7 @@ const NewTimer = () => {
         intervalHrs,
         intervalMins,
         intervalSecs,
+        countRounds
       },
       timerData
     );
