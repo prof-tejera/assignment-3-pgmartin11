@@ -34,13 +34,13 @@ export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRo
           <span className="time-setter-title"> Rounds:</span>
           <DecrementBtn
             handler={() => {
-              countRounds(decrementHelper(countRounds, 1));
+              setCountRounds(decrementHelper(countRounds, 1));
             }}
           />
           <span className="time-setter-val">{countRounds}</span>
           <IncrementBtn
             handler={() => {
-              countRounds(incrementHelper(countRounds));
+              setCountRounds(incrementHelper(countRounds));
             }}
           />
         </>
@@ -58,13 +58,13 @@ export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRo
           <span className="time-setter-title">Rounds:</span>
           <DecrementBtn
             handler={() => {
-              countRounds(decrementHelper(countRounds, 1));
+              setCountRounds(decrementHelper(countRounds, 1));
             }}
           />
           <span className="time-setter-val">{countRounds}</span>
           <IncrementBtn
             handler={() => {
-              countRounds(incrementHelper(countRounds));
+              setCountRounds(incrementHelper(countRounds));
             }}
           />
         </>
