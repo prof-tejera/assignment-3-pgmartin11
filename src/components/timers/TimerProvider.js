@@ -9,10 +9,10 @@ export const TimerContext = createContext({});
 const TimerProvider = ({ children }) => {
   // workout - hard-coded for now
   const initial_timers = [
-    { id: 12, title: "Countdown", comment: "this is a CountDown timer", startVal: 8, endVal: 0, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 8, isRunning: false, isCompleted: false },     
-    { id: 13, title: "Stopwatch", comment: "this is a Stopwatch timer",  startVal: 0, endVal: 9, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 9, isRunning: false, isCompleted: false },
-    { id: 14, title: "XY", comment: "this is a XY timer",  startVal: 5, endVal: 0, roundStartVal: 2, roundEndVal: 1, intervalStartVal: null, intervalEndVal: null, timerSecs: 10, isRunning: false, isCompleted: false },
-    { id: 15, title: "Tabata", comment: "this is a Tabata timer",  startVal: 10, endVal: 0, roundStartVal: 3, roundEndVal: 1, intervalStartVal: 5, intervalEndVal: 0, timerSecs: 45, isRunning: false, isCompleted: false },
+    { id: 12, title: "Countdown", description: "this is a CountDown timer", startVal: 8, endVal: 0, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 8, isRunning: false, isCompleted: false },     
+    { id: 13, title: "Stopwatch", description: "this is a Stopwatch timer",  startVal: 0, endVal: 9, roundStartVal: null, roundEndVal: null, intervalStartVal: null, intervalEndVal: null, timerSecs: 9, isRunning: false, isCompleted: false },
+    { id: 14, title: "XY", description: "this is a XY timer",  startVal: 5, endVal: 0, roundStartVal: 2, roundEndVal: 1, intervalStartVal: null, intervalEndVal: null, timerSecs: 10, isRunning: false, isCompleted: false },
+    { id: 15, title: "Tabata", description: "this is a Tabata timer",  startVal: 10, endVal: 0, roundStartVal: 3, roundEndVal: 1, intervalStartVal: 5, intervalEndVal: 0, timerSecs: 45, isRunning: false, isCompleted: false },
   ];
 
   const [searchParams, setSearchParams] = useSearchParams();

@@ -6,6 +6,11 @@
   max-width: 220px;
 }
 
+.description-wrapper {
+  margin-top:  10px;
+  max-width: 235px;
+}
+
 .config-panel span.time-setter-title {
   display: inline-block;
   min-width: 150px;

@@ -17,6 +17,8 @@ import {
 } from "../../utils/helpers";
 import "./NewTimer.css";
 import { TimerContext } from "./TimerProvider";
+import { TimerDescription } from './TimerStyles';
+
 
 const InnerEditTimer = ({ timer }) => {
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ const InnerEditTimer = ({ timer }) => {
   const [countHrs, setCountHrs] = useState(timerHrs);
   const [countMins, setCountMins] = useState(timerMins);
   const [countSecs, setCountSecs] = useState(timerSecs);
+  const [description, setDescription] = useState(timer.description);
 
   let timerIntervalHrs = 0,
       timerIntervalMins = 0,
@@ -89,7 +92,8 @@ const InnerEditTimer = ({ timer }) => {
         intervalHrs,
         intervalMins,
         intervalSecs,
-        countRounds
+        countRounds,
+        description
       },
       timerData
     );
@@ -97,63 +101,28 @@ const InnerEditTimer = ({ timer }) => {
     updateTimer(timerData);
   };
 
-  let setters;
-  switch (type) {
-    case "Stopwatch":
-    case "Countdown":
-      setters = <SetterButtons {...setterBtnData} />;
-      break;
-    case "XY":
-      setters = (
-        <>
-          <div className="interval-wrapper">
-            <SetterButtons {...setterBtnData} />
-          </div>
-          <span className="time-setter-title"> Rounds:</span>
-          <DecrementBtn
-            handler={() => {
-              setCountRounds(decrementHelper(countRounds, 1));
-            }}
-          />
-          <span className="time-setter-val">{countRounds}</span>
-          <IncrementBtn
-            handler={() => {
-              setCountRounds(incrementHelper(countRounds));
-            }}
-          />
-        </>
-      );
-      break;
-    case "Tabata":
-      setters = (
-        <>
-          <div className="interval-wrapper">
-            <SetterButtons {...setterBtnData} />
-          </div>
-          <div className="interval-wrapper">
-            <SetterButtons {...setterIntervalBtnData} />
-          </div>
-          <span className="time-setter-title">Rounds:</span>
-          <DecrementBtn
-            handler={() => {
-              setCountRounds(decrementHelper(countRounds, 1));
-            }}
-          />
-          <span className="time-setter-val">{countRounds}</span>
-          <IncrementBtn
-            handler={() => {
-              setCountRounds(incrementHelper(countRounds));
-            }}
-          />
-        </>
-      );
-  }
+  const setters = buildSetters(
+    type,
+    setterBtnData, 
+    setterIntervalBtnData,
+    countRounds,
+    setCountRounds, 
+  );
 
   return (
     <div className="config-panel">
       <h1>Edit Timer</h1>
       <h2>{timer.title} Timer</h2>
       <div className="setter-wrapper">{setters}</div>
+        {type && (
+        <div className="description-wrapper">
+          Description (optional)
+          <TimerDescription 
+            value={description} 
+            onChange={e => setDescription(e.target.value)}
+          />
+        </div>
+      )}
       <br />
       <button className="add-timer-submit" onClick={modifyTimer}>
         Update Timer

@@ -17,6 +17,8 @@ import {
 } from "../../utils/helpers";
 import "./NewTimer.css";
 import { TimerContext } from "./TimerProvider";
+import { TimerDescription } from './TimerStyles';
+
 
 export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRounds, setCountRounds) => {
   let setters;
@@ -86,6 +88,7 @@ const NewTimer = () => {
   const [intervalMins, setIntervalMins] = useState(0);
   const [intervalSecs, setIntervalSecs] = useState(0);
   const [countRounds, setCountRounds] = useState(1);
+  const [description, setDescription] = useState("");
 
   const setterBtnData = buildSetterBtnData({
     countHrs,
@@ -120,11 +123,12 @@ const NewTimer = () => {
         intervalHrs,
         intervalMins,
         intervalSecs,
-        countRounds
+        countRounds,
+        description
       },
       timerData
     );
-
+console.log('*** timerData',timerData)
     createTimer(timerData);
 
     // reset values
@@ -136,6 +140,7 @@ const NewTimer = () => {
     setIntervalMins(0);
     setIntervalSecs(0);
     setCountRounds(1);
+    setDescription("");
   };
 
   const setters = buildSetters(
@@ -164,8 +169,16 @@ const NewTimer = () => {
           <option value="Tabata">Tabata</option>
         </select>
       </label>
-      <br />
       {type && <div className="setter-wrapper">{setters}</div>}
+      {type && (
+        <div className="description-wrapper">
+          Description (optional)
+          <TimerDescription 
+            value={description} 
+            onChange={e => setDescription(e.target.value)}
+          />
+        </div>
+      )}
       <br />
       {type && (
         <button className="add-timer-submit" onClick={addTimer}>
