@@ -36,6 +36,13 @@ const TimerTitle = styled.div`
   font-weight: 600;
 `;
 
+const TimerDescription = styled.textarea`
+  border: none;
+  font-size: 16px;
+  resize: vertical;
+  width: 100%;
+`;
+
 const WorkoutView = () => {
   const navigate = useNavigate();
 
@@ -245,6 +252,7 @@ const WorkoutView = () => {
             )}            
             <Timer key={`timer-${timerData.title}-${idx}`}>
               <TimerTitle>{timerData.title}</TimerTitle>
+              <TimerDescription value={timerData.comment} />
               {setTimerComponent(timerData, idx)}
             </Timer>
           </div>
