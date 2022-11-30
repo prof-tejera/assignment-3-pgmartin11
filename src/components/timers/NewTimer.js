@@ -128,7 +128,7 @@ const NewTimer = () => {
       },
       timerData
     );
-console.log('*** timerData',timerData)
+
     createTimer(timerData);
 
     // reset values
