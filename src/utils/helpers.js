@@ -143,6 +143,7 @@ export const getInitialTimerData = () => {
   return {
     id: "",
     title: "",
+    description: "",
     startVal: "",
     endVal: "",
     roundStartVal: "",
@@ -162,7 +163,8 @@ export const setTimerDataByType = (type, timerVals, timerData) => {
     intervalHrs, 
     intervalMins, 
     intervalSecs, 
-    countRounds
+    countRounds,
+    description
   } = timerVals;
 
   switch (type) {
@@ -198,6 +200,7 @@ export const setTimerDataByType = (type, timerVals, timerData) => {
         (timerData.startVal + timerData.intervalStartVal) *
         timerData.roundStartVal;
   }
+  timerData.description = description;
 
   return timerData;
 }
