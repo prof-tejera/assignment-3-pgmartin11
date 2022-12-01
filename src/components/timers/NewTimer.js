@@ -89,6 +89,7 @@ const NewTimer = () => {
   const [intervalSecs, setIntervalSecs] = useState(0);
   const [countRounds, setCountRounds] = useState(1);
   const [description, setDescription] = useState("");
+  const [timerPosition, setTimerPosition] = useState(0);
 
   const setterBtnData = buildSetterBtnData({
     countHrs,
@@ -129,7 +130,7 @@ const NewTimer = () => {
       timerData
     );
 
-    createTimer(timerData);
+    createTimer(timerData, timerPosition);
 
     // reset values
     setType("");

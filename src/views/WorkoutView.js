@@ -246,7 +246,7 @@ const WorkoutView = () => {
             {isStopped && (
               <TimerBtn
                 key={`edit-btn-${timerData.title}-${idx}`}
-                handler={() => navigate({ pathname: PATHS.EDIT(timerData.id), search: `?${searchParams}` })}
+                handler={() => navigate({ pathname: PATHS.EDIT(timerData.id, idx), search: `?${searchParams}` })}
                 label="Edit"
               />
             )}            

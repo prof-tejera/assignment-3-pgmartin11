@@ -20,7 +20,7 @@ import { TimerContext } from "./TimerProvider";
 import { TimerDescription } from './TimerStyles';
 
 
-const InnerEditTimer = ({ timer }) => {
+const InnerEditTimer = ({ timer, pos }) => {
   const navigate = useNavigate();
   const { updateTimer, searchParams } = useContext(TimerContext);
 
@@ -59,6 +59,7 @@ const InnerEditTimer = ({ timer }) => {
   const [intervalMins, setIntervalMins] = useState(timerIntervalMins);
   const [intervalSecs, setIntervalSecs] = useState(timerIntervalSecs);
   const [countRounds, setCountRounds] = useState(timer.roundStartVal);
+  const [timerPosition, setTimerPosition] = useState(pos);
 
   const setterBtnData = buildSetterBtnData({
     countHrs,
@@ -98,7 +99,7 @@ const InnerEditTimer = ({ timer }) => {
       timerData
     );
 
-    updateTimer(timerData);
+    updateTimer(timerData, timerPosition);
   };
 
   const setters = buildSetters(
@@ -135,13 +136,13 @@ const InnerEditTimer = ({ timer }) => {
 };
 
 const EditTimer = () => {
-  const { id } = useParams();
+  const { id, pos } = useParams();
   const { retrieveTimer } = useContext(TimerContext);
   const timer = retrieveTimer(id);
 
   if (!timer) return <div>Timer Not Found</div>;
 
-  return <InnerEditTimer timer={timer} />;
+  return <InnerEditTimer timer={timer} pos={pos}/>;
 
 }
 

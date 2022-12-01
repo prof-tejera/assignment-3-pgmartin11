@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 import { useSearchParams } from 'react-router-dom';
 import { timers } from "../../views/WorkoutView";
 import { usePersistedStatePolling } from '../../hooks';
-import { formattedDateTime } from '../../utils/helpers';
+import { formattedDateTime, positionTimer } from '../../utils/helpers';
 export const TimerContext = createContext({});
 
 
@@ -74,17 +74,19 @@ const TimerProvider = ({ children }) => {
     }
   };
 
-  const createTimer = timerData => {
-    const buf = [...timers, timerData];
-    setTimers(buf);
+  const createTimer = (timerData, pos) => {
+    //const buf = [...timers, timerData];
+    //setTimers(buf);
+    setTimers(positionTimer(timerData, pos, timers));
     setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
   }
 
   const retrieveTimer = id => timers.find(timer => timer.id == id);
 
-  const updateTimer = timerData => {
-    const buf = timers.map(timer => timer.id == timerData.id ? timerData : timer );
-    setTimers(buf);
+  const updateTimer = (timerData, pos) => {
+    //const buf = timers.map(timer => timer.id == timerData.id ? timerData : timer );
+    const buf = timers.filter(timer => timer.id != timerData.id);
+    setTimers(positionTimer(timerData, pos, buf));
     setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
   }
 

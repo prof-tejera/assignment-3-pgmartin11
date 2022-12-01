@@ -204,3 +204,14 @@ export const setTimerDataByType = (type, timerVals, timerData) => {
 
   return timerData;
 }
+
+export const positionTimer = (timerData, pos, timers) {
+  let buf = [];
+
+  timers.foreach((timer, i) => {
+    if (i == pos) { buf.push(timerData); }
+    buf.push(timer);
+  }
+
+  return buf;
+}
