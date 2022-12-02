@@ -22,7 +22,7 @@ import { TimerDescription } from './TimerStyles';
 
 const InnerEditTimer = ({ timer, pos }) => {
   const navigate = useNavigate();
-  const { updateTimer, searchParams } = useContext(TimerContext);
+  const { updateTimer, searchParams, timers } = useContext(TimerContext);
 
   const type = timer.title;
 
@@ -115,6 +115,20 @@ const InnerEditTimer = ({ timer, pos }) => {
       <h1>Edit Timer</h1>
       <h2>{timer.title} Timer</h2>
       <div className="setter-wrapper">{setters}</div>
+        {type && (<label>
+            <span className="type-label">Workout position (optional):</span>
+            <select
+              value={timerPosition}
+              onChange={(e) => {
+                setTimerPosition(e.target.value);
+              }}
+            >
+              {timers.map((timer, i) => {
+                return <option key={`t-create-${i}`} value={i}>{i+1}</option>
+              })}
+            </select>
+          </label>)
+        }
         {type && (
         <div className="description-wrapper">
           Description (optional)

@@ -78,7 +78,8 @@ export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRo
 
 const NewTimer = () => {
   const navigate = useNavigate();
-  const { createTimer, searchParams } = useContext(TimerContext);
+  const { createTimer, searchParams, timers } = useContext(TimerContext);
+  const woSize = timers.length+1;
 
   const [type, setType] = useState("");
   const [countHrs, setCountHrs] = useState(0);
@@ -89,7 +90,7 @@ const NewTimer = () => {
   const [intervalSecs, setIntervalSecs] = useState(0);
   const [countRounds, setCountRounds] = useState(1);
   const [description, setDescription] = useState("");
-  const [timerPosition, setTimerPosition] = useState(0);
+  const [timerPosition, setTimerPosition] = useState(woSize);
 
   const setterBtnData = buildSetterBtnData({
     countHrs,
@@ -171,6 +172,21 @@ const NewTimer = () => {
         </select>
       </label>
       {type && <div className="setter-wrapper">{setters}</div>}
+      {type && (<label>
+          <span className="type-label">Workout position (optional):</span>
+          <select
+            value={timerPosition}
+            onChange={(e) => {
+              setTimerPosition(e.target.value);
+            }}
+          >
+            {timers.map((timer, i) => {
+              return <option key={`t-create-${i}`} value={i}>{i+1}</option>
+            })}
+            <option value={woSize}>{woSize}</option>
+          </select>
+        </label>)
+      }
       {type && (
         <div className="description-wrapper">
           Description (optional)
