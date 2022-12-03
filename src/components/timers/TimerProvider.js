@@ -23,7 +23,7 @@ const TimerProvider = ({ children }) => {
   const [round, setRound] = usePersistedStatePolling('round', null);
   const [interval, setInterv] = usePersistedStatePolling('interval', null);
   const [remainingTime, setRemainingTime] = usePersistedStatePolling('remainingTime', 0);
-  const [activeTimerIdx, setActiveTimerIdx] = usePersistedStatePolling('activeTimerIdx', 0);
+  const [activeTimerIdx, setActiveTimerIdx] = usePersistedStatePolling('activeTimerIdx', null);
   const [timers, setTimers] = useState(workoutConfig); // usePersistedStatePolling ??
   const [history, setHistory] = usePersistedStatePolling('history', []);
   const [isPaused, setPaused] = usePersistedStatePolling('isPaused', false);
