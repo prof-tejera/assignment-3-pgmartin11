@@ -18,7 +18,6 @@ const TimerProvider = ({ children }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const workoutConfig = searchParams.get('myWorkout') === null ? initial_timers : JSON.parse(decodeURIComponent(searchParams.get('myWorkout')));
-//  const workoutConfig = searchParams.get('myWorkout') === null ? []: JSON.parse(decodeURIComponent(searchParams.get('myWorkout')));
 
   const [count, setCount] = usePersistedStatePolling('count', null);
   const [round, setRound] = usePersistedStatePolling('round', null);
@@ -64,7 +63,6 @@ const TimerProvider = ({ children }) => {
       });
       setTimers(newTs);
       setStopped(true);
-      //XXX
       setActiveTimerIdx(null);
       setCount(null);
       setRound(null);
@@ -77,7 +75,6 @@ const TimerProvider = ({ children }) => {
   const createTimer = (timerData, pos) => {
     //const buf = [...timers, timerData];
     //setTimers(buf);
-console.log(timerData, pos, timers);
     const buf = positionTimer(timerData, pos, timers);
     setTimers(buf);
     setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
