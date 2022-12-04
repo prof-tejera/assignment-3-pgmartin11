@@ -5,9 +5,9 @@ import App from "./App";
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   return (
     <div role="alert">
-      <p>An error occurred in the application:</p>
+      <h2>An error occurred in the application:</h2>
       <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
+      <button onClick={resetErrorBoundary}>Retry</button>
     </div>
   )
 }
