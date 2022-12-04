@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/assignment-3-pgmartin11/static/css/main.21cf7a42.css",
+    "main.js": "/assignment-3-pgmartin11/static/js/main.94e082f1.js",
+    "index.html": "/assignment-3-pgmartin11/index.html",
+    "main.21cf7a42.css.map": "/assignment-3-pgmartin11/static/css/main.21cf7a42.css.map",
+    "main.94e082f1.js.map": "/assignment-3-pgmartin11/static/js/main.94e082f1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.21cf7a42.css",
+    "static/js/main.94e082f1.js"
+  ]
+}
