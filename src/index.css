@@ -143,16 +143,29 @@ button:disabled {
   border: 2px solid red;
 }
 
-.x {
+button.x {
   position: absolute;
-  top: 15px;
+  top: 35px;
   right: 14px;
   background-color: #fac384;
 }
 
-.x:focus {
+button.x:focus {
   background-color: #fac384;
 }
+
+/*
+button.edit {
+  position: absolute;
+  top: 35px;
+  right: 14px;
+  background-color: #fac384;
+}
+
+button.edit:focus {
+  background-color: #fac384;
+} 
+ */
 
 .t-total,
 .t-remaining {
@@ -177,6 +190,10 @@ button:disabled {
 
 .add-timer-wrapper {
   margin-top: 0;
+}
+
+.timer-desc {
+  font-size: 18px;
 }
 
 button.documentation,
