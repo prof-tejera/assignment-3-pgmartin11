@@ -2,9 +2,9 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../constants";
-import TimerBtn from "../../components/generic/TimerBtn";
-import { IncrementBtn, DecrementBtn } from "../../components/helpers/HMSBtn";
-import SetterButtons from "../../components/helpers/SetterButtons";
+import TimerBtn from "../generic/TimerBtn";
+import { IncrementBtn, DecrementBtn } from "../helpers/HMSBtn";
+import SetterButtons from "../helpers/SetterButtons";
 import {
   incrementHelper,
   decrementHelper,

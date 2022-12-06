@@ -1,6 +1,6 @@
 import { useEffect, useContext, useRef } from "react";
-import { IncrementBtn, DecrementBtn } from "../../components/helpers/HMSBtn";
-import DisplayTime from "../../components/generic/DisplayTime";
+import { IncrementBtn, DecrementBtn } from "../helpers/HMSBtn";
+import DisplayTime from "../generic/DisplayTime";
 import { TimerContext } from "./TimerProvider";
 
 const InnerCountdown = ({ startVal, endVal }) => {
