@@ -22,14 +22,6 @@ const Title = styled.div`
   font-size: 1.3rem;
 `;
 
-const RenderComponent = styled.div`
-  padding: 25px;
-  display: flex;
-  align-items: center;
-`;
-
-const History = styled.table``;
-
 const HistoryComponent = ({ workout }) => {
   const { timerHrs: woHrs, timerMins: woMins, timerSecs: woSecs } = calcHMS(calcWorkoutTime(workout.timers));
 
