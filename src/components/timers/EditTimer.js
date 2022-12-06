@@ -151,13 +151,14 @@ const InnerEditTimer = ({ timer, pos }) => {
 
 const EditTimer = () => {
   const { id, pos } = useParams();
+
   const { retrieveTimer } = useContext(TimerContext);
 
   const timer = retrieveTimer(id);
 
   if (!timer) return <div>Timer Not Found</div>;
 
-  return <InnerEditTimer timer={timer} pos={pos}/>;
+  return <InnerEditTimer timer={timer} pos={pos==':pos' ? 0 : pos}/>;
 
 }
 
