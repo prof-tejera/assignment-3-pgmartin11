@@ -254,7 +254,7 @@ const WorkoutView = () => {
             )}            
             <Timer key={`timer-${timerData.title}-${idx}`}>
               <TimerTitle>{timerData.title}</TimerTitle>
-              <p>{timerData.description}</p>
+              <p className="timer-desc">{timerData.description}</p>
               {setTimerComponent(timerData, idx)}
             </Timer>
           </div>
