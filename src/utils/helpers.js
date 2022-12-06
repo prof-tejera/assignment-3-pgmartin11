@@ -167,6 +167,8 @@ export const setTimerDataByType = (type, timerVals, timerData) => {
     description
   } = timerVals;
 
+  const MAX_LENGTH = 50;
+
   switch (type) {
     case "Stopwatch":
       timerData.startVal = 0;
@@ -200,7 +202,7 @@ export const setTimerDataByType = (type, timerVals, timerData) => {
         (timerData.startVal + timerData.intervalStartVal) *
         timerData.roundStartVal;
   }
-  timerData.description = description;
+  timerData.description = truncateStr(description, MAX_LENGTH);
 
   return timerData;
 }
@@ -209,6 +211,8 @@ export const positionTimer = (timerData, pos, timers) => {
   const beforeSize = timers.length;
 
   if (timers.length == 0) { return [timerData]; }
+
+  if (pos == 0) { return [timerData, ...timers]; }
 
   let buf = [];
   timers.forEach((timer, i) => {
@@ -221,4 +225,8 @@ export const positionTimer = (timerData, pos, timers) => {
   }
 
   return buf;
+}
+
+export const truncateStr = (str, len) => {
+  return str.substring(0, len);
 }
