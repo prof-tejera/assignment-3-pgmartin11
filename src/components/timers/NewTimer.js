@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../constants";
 import TimerBtn from "../generic/TimerBtn";
@@ -80,7 +80,9 @@ export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRo
 const NewTimer = () => {
   const navigate = useNavigate();
   const { createTimer, searchParams, timers } = useContext(TimerContext);
-  const woSize = timers.length+1;
+  
+  const woSize = useRef(0);
+  woSize.current = timers.length+1;
 
   const [type, setType] = useState("");
   const [countHrs, setCountHrs] = useState(0);
@@ -91,7 +93,7 @@ const NewTimer = () => {
   const [intervalSecs, setIntervalSecs] = useState(0);
   const [countRounds, setCountRounds] = useState(1);
   const [description, setDescription] = useState("");
-  const [timerPosition, setTimerPosition] = useState(woSize);
+  const [timerPosition, setTimerPosition] = useState(woSize.current);
 
   const setterBtnData = buildSetterBtnData({
     countHrs,
@@ -144,6 +146,9 @@ const NewTimer = () => {
     setIntervalSecs(0);
     setCountRounds(1);
     setDescription("");
+
+    woSize.current = woSize.current+1;
+    setTimerPosition(woSize.current);
   };
 
   const setters = buildSetters(
@@ -186,7 +191,7 @@ const NewTimer = () => {
             {timers.map((timer, i) => {
               return <option key={`t-create-${i}`} value={i}>{i+1}</option>
             })}
-            <option value={woSize}>{woSize}</option>
+            <option value={woSize.current}>{woSize.current}</option>
           </select>
         </label>)
       }
