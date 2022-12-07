@@ -73,8 +73,6 @@ const TimerProvider = ({ children }) => {
   };
 
   const createTimer = (timerData, pos) => {
-    //const buf = [...timers, timerData];
-    //setTimers(buf);
     const buf = positionTimer(timerData, pos, timers);
     setTimers(buf);
     setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
@@ -83,7 +81,6 @@ const TimerProvider = ({ children }) => {
   const retrieveTimer = id => timers.find(timer => timer.id == id);
 
   const updateTimer = (timerData, pos) => {
-    //const buf = timers.map(timer => timer.id == timerData.id ? timerData : timer );
     const buf = timers.filter(timer => timer.id != timerData.id);
     setTimers(positionTimer(timerData, pos, buf));
     setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(buf)) });
