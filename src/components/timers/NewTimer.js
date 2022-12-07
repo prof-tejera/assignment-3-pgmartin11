@@ -18,6 +18,7 @@ import {
 import "./NewTimer.css";
 import { TimerContext } from "./TimerProvider";
 import { TimerDescription } from './TimerStyles';
+import WorkoutInventory from '../documentation/WorkoutInventory';
 
 
 export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRounds, setCountRounds) => {
@@ -154,6 +155,8 @@ const NewTimer = () => {
   );
 
   return (
+    <>
+    <WorkoutInventory />
     <div className="config-panel">
       <h1>Add a Timer</h1>
       <label>
@@ -206,6 +209,7 @@ const NewTimer = () => {
       <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` }) } label="Documentation" />
       <TimerBtn handler={() => navigate({ pathname: PATHS.HISTORY, search: `?${searchParams}` }) } label="History" />
     </div>
+    </>
   );
 };
 

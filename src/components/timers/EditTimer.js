@@ -18,6 +18,7 @@ import {
 import "./NewTimer.css";
 import { TimerContext } from "./TimerProvider";
 import { TimerDescription } from './TimerStyles';
+import WorkoutInventory from '../documentation/WorkoutInventory';
 
 
 const InnerEditTimer = ({ timer, pos }) => {
@@ -111,6 +112,8 @@ const InnerEditTimer = ({ timer, pos }) => {
   );
 
   return (
+    <>
+    <WorkoutInventory />
     <div className="config-panel">
       <h1>Edit Timer</h1>
       <h2>{timer.title} Timer</h2>
@@ -146,6 +149,7 @@ const InnerEditTimer = ({ timer, pos }) => {
       <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` }) } label="Documentation" />
       <TimerBtn handler={() => navigate({ pathname: PATHS.HISTORY, search: `?${searchParams}` }) } label="History" />
     </div>
+    </>
   );
 };
 
