@@ -26,7 +26,11 @@ const Title = styled.div`
 `;
 
 const WorkoutInventory = () => {    
-  const { timers } = useContext(TimerContext);                                                                                                                                                                                                                                                                    
+  const { timers } = useContext(TimerContext);     
+
+  if (timers.length == 0) {
+    return <Title>No Timers Configured</Title>
+  }                                                                                                                                                                                                                                                            
   return (
     <div>
       <Title>Configured Timers</Title>
