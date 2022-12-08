@@ -2,14 +2,8 @@ import React, { useContext } from "react";
 import { TimerContext } from "../timers/TimerProvider";
 import { calcWorkoutTime, calcHMS } from "../../utils/helpers";
 import styled from "styled-components";
+import "./WorkoutInventory.css";
 
-
-{/*
-const Wrapper = styled.div`
-  border: 1px solid #121212;
-  margin: 20px 0px;
-`;
- */}
 
 const Container = styled.div`
   padding: 20px;
@@ -32,7 +26,7 @@ const WorkoutInventory = () => {
     return <Title>No Timers Configured</Title>
   }                                                                                                                                                                                                                                                            
   return (
-    <div>
+    <div className="wo-config-panel">
       <Title>Configured Timers</Title>
       <Container>
         <table>
@@ -55,8 +49,8 @@ const WorkoutInventory = () => {
               }
 
               const { timerHrs, timerMins, timerSecs } = calcHMS(count);
-              const numRounds = timer.roundEndVal != '' ? timer.roundEndVal : 'N/A';
-              const numIntervals = timer.intervalEndVal != '' ? timer.intervalEndVal : 'N/A';
+              const numRounds = timer.roundStartVal != '' ? timer.roundStartVal : 'N/A';
+              const numIntervals = timer.intervalStartVal != '' ? timer.intervalStartVal : 'N/A';
 
               return (
                 <tr key={i}>
