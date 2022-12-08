@@ -1,0 +1,12 @@
+.wo-config-panel {
+    margin-top: 2em;
+}
+
+@media (min-width: 855px) {
+  .wo-config-panel {
+    max-width: 28%;
+    margin-right: 16em;
+    margin-top: 3.5em;
+    float: right;
+  }
+}
