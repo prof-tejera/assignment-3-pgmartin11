@@ -181,7 +181,7 @@ const NewTimer = () => {
       </label>
       {type && <div className="setter-wrapper">{setters}</div>}
       {type && (<label>
-          <span className="type-label">Workout position (optional):</span>
+          <span className="type-label">Workout position:</span>
           <select
             value={timerPosition}
             onChange={(e) => {
