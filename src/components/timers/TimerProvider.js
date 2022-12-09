@@ -37,6 +37,7 @@ const TimerProvider = ({ children }) => {
       return timer;
     });
     setTimers(newTs);
+    setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(newTs)), in_progress: 1 });
   };
 
   const dispatcher = (posRef) => {
@@ -67,8 +68,10 @@ const TimerProvider = ({ children }) => {
       setCount(null);
       setRound(null);
       setInterval(null);
-      setHistory([...history, { date_time: formattedDateTime(), timers }]);
-      setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
+
+      // use newTs rather than timers to avoid a race condition
+      setHistory([...history, { date_time: formattedDateTime(), newTs }]);
+      setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(newTs)) });
     }
   };
 
