@@ -73,7 +73,6 @@ const WorkoutView = () => {
   useEffect(() => {
     if (searchParams.get('in_progress')) {
       setStopped(false);
-      setPaused(false);
 
       if (activeTimerIdx == null) { setActiveTimerIdx(0); }
     }
