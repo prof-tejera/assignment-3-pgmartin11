@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import { PATHS } from "../constants";
+import { PATHS, TIMERS } from "../constants";
 import Stopwatch from "../components/timers/Stopwatch";
 import Countdown from "../components/timers/Countdown";
 import XY from "../components/timers/XY";
@@ -89,16 +89,16 @@ const WorkoutView = () => {
     let timerComponent;
 
     switch(timerData.title) {
-      case 'Stopwatch':
+      case TIMERS.STOPWATCH:
         timerComponent = <Stopwatch {...timerData} isRunning={idx === activeTimerIdx} />;
         break;
-      case 'Countdown':
+      case TIMERS.COUNTDOWN:
         timerComponent = <Countdown {...timerData} isRunning={idx === activeTimerIdx} />;
         break;
-      case 'XY': 
+      case TIMERS.XY: 
         timerComponent = <XY {...timerData} isRunning={idx === activeTimerIdx} />;
         break;
-      case 'Tabata':
+      case TIMERS.TABATA:
         timerComponent = <Tabata {...timerData} isRunning={idx === activeTimerIdx} />;
         break;
       default:
@@ -112,6 +112,8 @@ const WorkoutView = () => {
   const pauseLabel = isPaused ? "Resume" : "Pause";
 
 //console.log('activeTimerIdx', activeTimerIdx);
+
+console.log('******* WorkoutView: isStopped', isStopped);
 
   return (
     <>
@@ -145,6 +147,7 @@ const WorkoutView = () => {
                   });
                */
                   setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)), in_progress: 1 });
+                  //setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
                   setActiveTimerIdx(idx);
                   setStopped(false);
                   setPaused(false);
@@ -181,12 +184,12 @@ const WorkoutView = () => {
                   setCount(timers[activeTimerIdx].endVal);
 
                   if (
-                    timers[activeTimerIdx].title == "XY" ||
-                    timers[activeTimerIdx].title == "Tabata"
+                    timers[activeTimerIdx].title == TIMERS.XY ||
+                    timers[activeTimerIdx].title == TIMERS.TABATA
                   ) {
                     setRound(timers[activeTimerIdx].roundEndVal);
                   }
-                  if (timers[activeTimerIdx].title == "Tabata") {
+                  if (timers[activeTimerIdx].title == TIMERS.TABATA) {
                     setInterv(timers[activeTimerIdx].intervalEndVal);
                   }
 

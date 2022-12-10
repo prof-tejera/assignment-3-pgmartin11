@@ -1,7 +1,7 @@
 
 import React, { useContext, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "../../constants";
+import { PATHS, TIMERS } from "../../constants";
 import TimerBtn from "../generic/TimerBtn";
 import { IncrementBtn, DecrementBtn } from "../helpers/HMSBtn";
 import SetterButtons from "../helpers/SetterButtons";
@@ -171,10 +171,10 @@ const NewTimer = () => {
           }}
         >
           <option value="">--</option>
-          <option value="Countdown">Countdown</option>
-          <option value="Stopwatch">Stopwatch</option>
-          <option value="XY">XY</option>
-          <option value="Tabata">Tabata</option>
+          <option value={TIMERS.COUNTDOWN}>Countdown</option>
+          <option value={TIMERS.STOPWATCH}>Stopwatch</option>
+          <option value={TIMERS.XY}>XY</option>
+          <option value={TIMERS.TABATA}>Tabata</option>
         </select>
       </label>
       {type && <div className="setter-wrapper">{setters}</div>}

@@ -1,3 +1,5 @@
+import { TIMERS } from "../constants";
+
 // Add helpers here. This is usually code that is just JS and not React code. Example: write a function that
 // calculates number of minutes when passed in seconds. Things of this nature that you don't want to copy/paste
 // everywhere.
@@ -170,24 +172,24 @@ export const setTimerDataByType = (type, timerVals, timerData) => {
   const MAX_LENGTH = 50;
 
   switch (type) {
-    case "Stopwatch":
+    case TIMERS.STOPWATCH:
       timerData.startVal = 0;
       timerData.endVal = calcSeconds(countHrs, countMins, countSecs);
       timerData.timerSecs = timerData.endVal;
       break;
-    case "Countdown":
+    case TIMERS.COUNTDOWN:
       timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
       timerData.endVal = 0;
       timerData.timerSecs = timerData.startVal;
       break;
-    case "XY":
+    case TIMERS.XY:
       timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
       timerData.endVal = 0;
       timerData.roundStartVal = countRounds;
       timerData.roundEndVal = 1;
       timerData.timerSecs = timerData.startVal * timerData.roundStartVal;
       break;
-    case "Tabata":
+    case TIMERS.TABATA:
       timerData.startVal = calcSeconds(countHrs, countMins, countSecs);
       timerData.endVal = 0;
       timerData.intervalStartVal = calcSeconds(

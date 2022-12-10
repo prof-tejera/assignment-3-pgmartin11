@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { TimerContext } from "../timers/TimerProvider";
 import { calcWorkoutTime, calcHMS } from "../../utils/helpers";
+import { TIMERS } from "../../constants";
 import styled from "styled-components";
 import "./WorkoutInventory.css";
 
@@ -42,7 +43,7 @@ const WorkoutInventory = () => {
           <tbody>
             {timers.map((timer, i) => {
               let count = 0;
-              if (timer.title == 'Stopwatch') { 
+              if (timer.title == TIMERS.STOPWATCH) { 
                 count = timer.endVal;
               } else {
                 count = timer.startVal;

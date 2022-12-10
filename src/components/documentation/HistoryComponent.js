@@ -1,5 +1,6 @@
 import React from "react";
 import { calcWorkoutTime, calcHMS } from "../../utils/helpers";
+import { TIMERS } from "../../constants";
 import styled from "styled-components";
 
 
@@ -43,7 +44,7 @@ const HistoryComponent = ({ workout }) => {
           <tbody>
             {workout.timers.map((timer, i) => {
               let count = 0;
-              if (timer.title == 'Stopwatch') { 
+              if (timer.title == TIMERS.STOPWATCH) { 
                 count = timer.endVal;
               } else {
                 count = timer.startVal;

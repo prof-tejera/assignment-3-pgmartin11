@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { PATHS } from "../../constants";
+import { PATHS, TIMERS } from "../../constants";
 import TimerBtn from "../generic/TimerBtn";
 import { IncrementBtn, DecrementBtn } from "../helpers/HMSBtn";
 import SetterButtons from "../helpers/SetterButtons";
@@ -29,12 +29,12 @@ const InnerEditTimer = ({ timer, pos }) => {
 
   let tmrSecs = 0;
   switch (type) {
-    case 'Stopwatch':
+    case TIMERS.STOPWATCH:
       tmrSecs = timer.endVal;
       break;
-    case 'Countdown':
-    case 'XY':
-    case 'Tabata':
+    case TIMERS.COUNTDOWN:
+    case TIMERS.XY:
+    case TIMERS.TABATA:
       tmrSecs = timer.startVal;
     break;
     default:
