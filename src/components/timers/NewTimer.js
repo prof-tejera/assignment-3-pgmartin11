@@ -80,9 +80,7 @@ export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRo
 const NewTimer = () => {
   const navigate = useNavigate();
   const { createTimer, searchParams, timers } = useContext(TimerContext);
-  
-  const woSize = useRef(0);
-  woSize.current = timers.length+1;
+  const woSize = useRef(timers.length+1);
 
   const [type, setType] = useState("");
   const [countHrs, setCountHrs] = useState(0);
