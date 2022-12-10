@@ -31,6 +31,7 @@ const History = () => {
       <Title>History</Title>
       <TimerBtn handler={() => navigate({ pathname: PATHS.HOME, search: `?${searchParams}` }) } label="Back to workout" />
       <TimerBtn handler={() => navigate({ pathname: PATHS.DOCS, search: `?${searchParams}` }) } label="Documentation" />
+      {history.length == 0 && <p>No workouts completed</p>}
       {history.map((workout, i) => {
         return (
           <div key={`w-${i}`} className="history-wrapper">
