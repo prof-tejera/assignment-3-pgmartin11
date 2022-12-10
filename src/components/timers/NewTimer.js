@@ -24,11 +24,11 @@ import WorkoutInventory from '../documentation/WorkoutInventory';
 export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRounds, setCountRounds) => {
   let setters;
   switch (type) {
-    case "Stopwatch":
-    case "Countdown":
+    case TIMERS.STOPWATCH:
+    case TIMERS.COUNTDOWN:
       setters = <SetterButtons {...setterBtnData} />;
       break;
-    case "XY":
+    case TIMERS.XY:
       setters = (
         <>
           <div className="interval-wrapper">
@@ -49,7 +49,7 @@ export const buildSetters = (type, setterBtnData, setterIntervalBtnData, countRo
         </>
       );
       break;
-    case "Tabata":
+    case TIMERS.TABATA:
       setters = (
         <>
           <div className="interval-wrapper">
