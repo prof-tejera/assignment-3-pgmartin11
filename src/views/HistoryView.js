@@ -9,11 +9,6 @@ import TimerBtn from "../components/generic/TimerBtn";
 
 
 const Container = styled.div`
-/*
-  display: flex;
-  justify-content: center;
-  width: 100%;
- */
   width: 65%;
   margin: 0 auto;
 `;
