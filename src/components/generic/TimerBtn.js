@@ -1,3 +1,6 @@
+import PropTypes from "prop-types";
+
+
 const TimerBtn = ({ label = "sample", handler, disabled = false }) => {
   return (
     <button
@@ -8,6 +11,12 @@ const TimerBtn = ({ label = "sample", handler, disabled = false }) => {
       {label}
     </button>
   );
+};
+
+TimerBtn.propTypes = {
+  label: PropTypes.string,
+  handler: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default TimerBtn;

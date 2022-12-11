@@ -1,15 +1,12 @@
 import { useEffect, useContext, useRef } from "react";
+import PropTypes from "prop-types";
 import DisplayTime from "../../components/generic/DisplayTime";
 import DisplayRound from "../../components/generic/DisplayRound";
 import { TimerContext } from "./TimerProvider";
 
 const InnerTabata = ({
   startVal,
-  endVal,
-  roundStartVal,
-  roundEndVal,
   intervalStartVal,
-  intervalEndVal,
 }) => {
   const {
     count,
@@ -85,6 +82,11 @@ const InnerTabata = ({
   );
 };
 
+InnerTabata.propTypes = {
+  startVal: PropTypes.number.isRequired,
+  intervalStartVal: PropTypes.number.isRequired,
+};
+
 const Tabata = ({
   startVal,
   endVal,
@@ -111,13 +113,20 @@ const Tabata = ({
   return (
     <InnerTabata
       startVal={startVal}
-      endVal={endVal}
-      roundStartVal={roundStartVal}
-      roundEndVal={roundEndVal}
       intervalStartVal={intervalStartVal}
-      intervalEndVal={intervalEndVal}
     />
   );
+};
+
+Tabata.propTypes = {
+  startVal: PropTypes.number.isRequired,
+  endVal: PropTypes.number.isRequired,
+  roundStartVal: PropTypes.number.isRequired,
+  roundEndVal: PropTypes.number.isRequired,
+  intervalStartVal: PropTypes.number.isRequired,
+  intervalEndVal: PropTypes.number.isRequired,
+  isRunning: PropTypes.bool,
+  isCompleted: PropTypes.bool,
 };
 
 export default Tabata;

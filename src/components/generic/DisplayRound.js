@@ -1,3 +1,6 @@
+import PropTypes from "prop-types";
+
+
 const DisplayRound = ({ round }) => {
   return (
     <div className="display">
@@ -5,6 +8,10 @@ const DisplayRound = ({ round }) => {
       {round}
     </div>
   );
+};
+
+DisplayRound.propTypes = {
+  round: PropTypes.number.isRequired,
 };
 
 export default DisplayRound;

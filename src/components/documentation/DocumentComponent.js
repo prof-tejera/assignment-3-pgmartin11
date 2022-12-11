@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+
 
 const Wrapper = styled.div`
   border: 1px solid #121212;
@@ -60,6 +62,12 @@ const DocumentComponent = ({ title, component, propDocs }) => {
       </Container>
     </Wrapper>
   );
+};
+
+DocumentComponent.propTypes = {
+  title: PropTypes.string, 
+  component: PropTypes.element, 
+  propDocs: PropTypes.array, 
 };
 
 export default DocumentComponent;

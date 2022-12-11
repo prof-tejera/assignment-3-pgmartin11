@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { calcWorkoutTime, calcHMS } from "../../utils/helpers";
 import { TIMERS } from "../../constants";
 import styled from "styled-components";
@@ -70,6 +71,10 @@ const HistoryComponent = ({ workout }) => {
       </Container>
     </Wrapper>
   );
+};
+
+HistoryComponent.propTypes = {
+  workout: PropTypes.array.isRequired,
 };
 
 export default HistoryComponent;

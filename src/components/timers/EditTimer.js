@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import { PATHS, TIMERS } from "../../constants";
 import TimerBtn from "../generic/TimerBtn";
 import { IncrementBtn, DecrementBtn } from "../helpers/HMSBtn";
@@ -151,6 +152,11 @@ const InnerEditTimer = ({ timer, pos }) => {
     </div>
     </>
   );
+};
+
+InnerEditTimer.propTypes = {
+  timer:  PropTypes.object.isRequired, 
+  pos: PropTypes.number.isRequired,
 };
 
 const EditTimer = () => {

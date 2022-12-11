@@ -1,8 +1,9 @@
-import { useEffect, useContext, useRef } from "react"; /** added useRef **/
+import { useEffect, useContext, useRef } from "react";
+import PropTypes from "prop-types";
 import DisplayTime from "../../components/generic/DisplayTime";
 import { TimerContext } from "./TimerProvider";
 
-const InnerStopwatch = ({ startVal, endVal }) => {
+const InnerStopwatch = ({ endVal }) => {
   const {
     count,
     setCount,
@@ -45,6 +46,10 @@ const InnerStopwatch = ({ startVal, endVal }) => {
   );
 };
 
+InnerStopwatch.propTypes = {
+  endVal: PropTypes.number.isRequired,
+};
+
 const Stopwatch = ({
   startVal,
   endVal,
@@ -59,7 +64,14 @@ const Stopwatch = ({
     );
   }
 
-  return <InnerStopwatch startVal={startVal} endVal={endVal} />;
+  return <InnerStopwatch endVal={endVal} />;
+};
+
+Stopwatch.propTypes = {
+  startVal: PropTypes.number.isRequired,
+  endVal: PropTypes.number.isRequired,
+  isRunning: PropTypes.bool,
+  isCompleted: PropTypes.bool,
 };
 
 export default Stopwatch;

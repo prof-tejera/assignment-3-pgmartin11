@@ -1,9 +1,10 @@
 import { useEffect, useContext, useRef } from "react";
+import PropTypes from "prop-types";
 import DisplayTime from "../../components/generic/DisplayTime";
 import DisplayRound from "../../components/generic/DisplayRound";
 import { TimerContext } from "./TimerProvider";
 
-const InnerXY = ({ startVal, endVal, roundStartVal, roundEndVal }) => {
+const InnerXY = ({ startVal }) => {
   const {
     count,
     setCount,
@@ -61,6 +62,10 @@ const InnerXY = ({ startVal, endVal, roundStartVal, roundEndVal }) => {
   );
 };
 
+InnerXY.propTypes = {
+  startVal: PropTypes.number.isRequired,
+};
+
 const XY = ({
   startVal,
   endVal,
@@ -81,11 +86,17 @@ const XY = ({
   return (
     <InnerXY
       startVal={startVal}
-      endVal={endVal}
-      roundStartVal={roundStartVal}
-      roundEndVal={roundEndVal}
     />
   );
+};
+
+XY.propTypes = {
+  startVal: PropTypes.number.isRequired,
+  endVal: PropTypes.number.isRequired,
+  roundStartVal: PropTypes.number.isRequired,
+  roundEndVal: PropTypes.number.isRequired,
+  isRunning: PropTypes.bool,
+  isCompleted: PropTypes.bool,
 };
 
 export default XY;

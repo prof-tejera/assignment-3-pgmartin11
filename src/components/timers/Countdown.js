@@ -1,9 +1,10 @@
 import { useEffect, useContext, useRef } from "react";
+import PropTypes from "prop-types";
 import { IncrementBtn, DecrementBtn } from "../helpers/HMSBtn";
 import DisplayTime from "../generic/DisplayTime";
 import { TimerContext } from "./TimerProvider";
 
-const InnerCountdown = ({ startVal, endVal }) => {
+const InnerCountdown = () => {
   const {
     count,
     setCount,
@@ -62,7 +63,14 @@ const Countdown = ({
     );
   }
 
-  return <InnerCountdown startVal={startVal} endVal={endVal} />;
+  return <InnerCountdown />;
+};
+
+Countdown.propTypes = {
+  startVal: PropTypes.number.isRequired,
+  endVal: PropTypes.number.isRequired,
+  isRunning: PropTypes.bool,
+  isCompleted: PropTypes.bool,
 };
 
 export default Countdown;

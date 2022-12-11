@@ -1,5 +1,7 @@
+import PropTypes from "prop-types";
 import { IncrementBtn, DecrementBtn } from "./HMSBtn";
 import { incrementHelper, decrementHelper, calcHMS } from "../../utils/helpers";
+
 
 const SetterButtons = ({
   hoursLabel,
@@ -66,6 +68,19 @@ const SetterButtons = ({
       />
     </>
   );
+};
+
+SetterButtons.propTypes = {
+  hoursLabel: PropTypes.string.isRequired,
+  minutesLabel: PropTypes.string.isRequired,
+  secondsLabel: PropTypes.string.isRequired,
+  countHrs: PropTypes.number.isRequired,
+  countMins: PropTypes.number.isRequired,
+  countSecs: PropTypes.number.isRequired,
+  setCountHrs: PropTypes.func.isRequired,
+  setCountMins: PropTypes.func.isRequired,
+  setCountSecs: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default SetterButtons;
