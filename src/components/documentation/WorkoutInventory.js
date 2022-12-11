@@ -24,7 +24,11 @@ const WorkoutInventory = () => {
   const { timers } = useContext(TimerContext);     
 
   if (timers.length == 0) {
-    return <Title>No Timers Configured</Title>
+    return (
+      <div className="wo-config-panel">
+        <Title>No Timers Configured</Title>
+      </div>
+    );
   }                                                                                                                                                                                                                                                            
   return (
     <div className="wo-config-panel">
