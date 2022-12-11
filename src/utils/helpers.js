@@ -108,7 +108,9 @@ export const makeId = () => {
   return result;
 };
 
-
+/*
+ * build setter button data used by create timer and edit timer pages
+ */
 export const buildSetterBtnData = btnData => {
   const { countHrs,countMins, countSecs, setCountHrs, setCountMins, setCountSecs } = btnData;
 
@@ -125,6 +127,9 @@ export const buildSetterBtnData = btnData => {
   };
 }
 
+/*
+ * build interval ssetter button data used by create timer and edit timer pages
+ */
 export const buildSetterIntervalBtnData = intervBtnData => {
   const { intervalHrs, intervalMins, intervalSecs, setIntervalHrs, setIntervalMins, setIntervalSecs } = intervBtnData;
 
@@ -141,6 +146,9 @@ export const buildSetterIntervalBtnData = intervBtnData => {
   };
 }
 
+/*
+ * configure initial timer data values
+ */
 export const getInitialTimerData = () => {
   return {
     id: "",
@@ -157,6 +165,9 @@ export const getInitialTimerData = () => {
   };
 }
 
+/*
+ * configure timer data based on timer type
+ */
 export const setTimerDataByType = (type, timerVals, timerData) => {
   const { 
     countHrs, 
@@ -209,6 +220,9 @@ export const setTimerDataByType = (type, timerVals, timerData) => {
   return timerData;
 }
 
+/*
+ * move timers position int the workout queue
+ */
 export const positionTimer = (timerData, pos, timers) => {
   const beforeSize = timers.length;
 
@@ -229,6 +243,9 @@ export const positionTimer = (timerData, pos, timers) => {
   return buf;
 }
 
+/*
+ * truncate string if length exceeds len value
+ */
 export const truncateStr = (str, len) => {
   return str.substring(0, len);
 }
