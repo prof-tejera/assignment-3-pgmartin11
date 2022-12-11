@@ -55,6 +55,15 @@ const WorkoutInventory = () => {
 
               const { timerHrs, timerMins, timerSecs } = calcHMS(count);
               const numRounds = timer.roundStartVal != '' ? timer.roundStartVal : 'N/A';
+
+              let intervalDisplay;
+              if (timer.intervalStartVal != '') {
+                const { timerHrs: intervalHrs, timerMins: intervalMins, timerSecs: intervalSecs } = calcHMS(timer.intervalStartVal);
+                intervalDisplay = `${timerHrs}:${timerMins}:${timerSecs}`;
+              } else {
+                intervalDisplay = 'N/A';
+              }
+
               const numIntervals = timer.intervalStartVal != '' ? timer.intervalStartVal : 'N/A';
 
               return (
@@ -62,7 +71,7 @@ const WorkoutInventory = () => {
                   <td>{i+1}</td>
                   <td>{timer.title}</td>
                   <td>{timerHrs}:{timerMins}:{timerSecs}</td>
-                  <td>{numIntervals}</td>
+                  <td>{intervalDisplay}</td>
                   <td>{numRounds}</td>
                 </tr>
               );
