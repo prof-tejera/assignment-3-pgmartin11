@@ -26,7 +26,8 @@ const InnerStopwatch = ({ startVal, endVal }) => {
       }
 
       if (count == endVal) {
-        dispatcher(posRef);
+        posRef.current.scrollIntoView({ behavior: "smooth" });
+        dispatcher();
       }
     }
 

@@ -34,7 +34,8 @@ const InnerXY = ({ startVal, endVal, roundStartVal, roundEndVal }) => {
       }
 
       if (round == 1 && count == 0) {
-        dispatcher(posRef);
+        posRef.current.scrollIntoView({ behavior: "smooth" });
+        dispatcher();
       }
     }
 

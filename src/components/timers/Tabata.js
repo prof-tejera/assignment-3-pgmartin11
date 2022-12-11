@@ -57,7 +57,8 @@ const InnerTabata = ({
       }
 
       if (round == 1 && !count && interval == 0) {
-        dispatcher(posRef);
+        posRef.current.scrollIntoView({ behavior: "smooth" });
+        dispatcher();
       }
     }
 

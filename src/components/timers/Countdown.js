@@ -27,7 +27,8 @@ const InnerCountdown = ({ startVal, endVal }) => {
       }
 
       if (count == 0) {
-        dispatcher(posRef);
+        posRef.current.scrollIntoView({ behavior: "smooth" });
+        dispatcher();
       }
     }
 
