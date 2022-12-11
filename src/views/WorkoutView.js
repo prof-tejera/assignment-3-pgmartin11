@@ -74,11 +74,15 @@ const WorkoutView = () => {
     if (searchParams.get('in_progress')) {
       setStopped(false);
 
+      // ensure the timer index is set to start of workout queue
       if (activeTimerIdx == null) { setActiveTimerIdx(0); }
     }
   }, []);
 
   useEffect(() => {
+    // if we go with in_progress in URL...
+    if (searchParams.get('in_progress')) { return; }
+
     if (isStopped) {
       workoutRunningTime.current = calcWorkoutTime(timers);
       setRemainingTime(workoutRunningTime.current);
