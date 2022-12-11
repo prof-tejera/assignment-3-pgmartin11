@@ -43,20 +43,20 @@ const InnerTabata = ({
         }, 1000);
       }
 
-      if (count == 0 && interval > 0) {
+      if (!count && interval > 0) {
         t = setTimeout(() => {
           setInterv(interval - 1);
           setRemainingTime(remainingTime - 1);
         }, 1000);
       }
 
-      if (round - 1 > 0 && count == 0 && interval == 0) {
+      if (round - 1 > 0 && !count && interval == 0) {
         setRound(round - 1);
         setCount(startVal);
         setInterv(intervalStartVal);
       }
 
-      if (round == 1 && count == 0 && interval == 0) {
+      if (round == 1 && !count && interval == 0) {
         dispatcher(posRef);
       }
     }
