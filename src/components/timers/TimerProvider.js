@@ -45,7 +45,7 @@ const TimerProvider = ({ children }) => {
     //setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(newTs)) });
   };
 
-  const dispatcher = (posRef) => {
+  const dispatcher = () => {
     if (activeTimerIdx + 1 < timers.length) {
       markTimerComplete();
       setCount(timers[activeTimerIdx + 1].startVal);
@@ -61,7 +61,6 @@ const TimerProvider = ({ children }) => {
       }
 
       setActiveTimerIdx(activeTimerIdx + 1);
-      //posRef.current.scrollIntoView({ behavior: "smooth" });
     } else {
       // mark all timers complete
       const newTs = timers.map((timer, i) => {
