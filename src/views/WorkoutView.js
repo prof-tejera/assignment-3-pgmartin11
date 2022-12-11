@@ -71,18 +71,11 @@ const WorkoutView = () => {
   const workoutRunningTime = useRef(0);
 
   useEffect(() => {
-    if (searchParams.get('in_progress')) {
-      setStopped(false);
-
-      // ensure the timer index is set to start of workout queue
-      if (activeTimerIdx == null) { setActiveTimerIdx(0); }
-    }
+    // ensure the timer index is set to start of workout queue
+    if (activeTimerIdx == null) { setActiveTimerIdx(0); }
   }, []);
 
   useEffect(() => {
-    // if we go with in_progress in URL...
-    if (searchParams.get('in_progress')) { return; }
-
     if (isStopped) {
       workoutRunningTime.current = calcWorkoutTime(timers);
       setRemainingTime(workoutRunningTime.current);
@@ -143,14 +136,8 @@ console.log('******* WorkoutView: isStopped', isStopped);
                       setInterv(timers[idx].intervalStartVal);
                     }
                   }
-              /*
-               * below doesn't work, myWorkout query param gets clobbered
-                  setSearchParams(prevSearch => {
-                    return { ...prevSearch, in_progress: 1 };
-                  });
-               */
-                  setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)), in_progress: 1 });
-                  //setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
+
+                  setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
                   setActiveTimerIdx(idx);
                   setStopped(false);
                   setPaused(false);
