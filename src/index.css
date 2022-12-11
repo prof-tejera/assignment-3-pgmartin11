@@ -145,8 +145,8 @@ button:disabled {
 
 button.x {
   position: absolute;
-  top: 35px;
-  right: 14px;
+  top: 15px;
+  right: 15px;
   background-color: #fac384;
 }
 
@@ -154,18 +154,16 @@ button.x:focus {
   background-color: #fac384;
 }
 
-/*
 button.edit {
   position: absolute;
-  top: 35px;
-  right: 14px;
-  background-color: #fac384;
+  top: 15px;
+  left: 15px;
+  background-color: #ccdffc;
 }
 
 button.edit:focus {
-  background-color: #fac384;
+  background-color: #ccdffc;
 } 
- */
 
 .t-total,
 .t-remaining {
