@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+
 export const usePersistedStatePolling = (storageKey, fallbackValue) => {
   const [value, setValue] = useState(() => {
     const storedValue = window.localStorage.getItem(storageKey);
@@ -18,23 +19,19 @@ export const usePersistedStatePolling = (storageKey, fallbackValue) => {
   });
 
   useEffect(() => {
- //   const i = setInterval(() => {
- //   const t = setTimeout(() => {
+    const t = setTimeout(() => {
       if (value !== null || typeof value !== 'undefined') {
         window.localStorage.setItem(storageKey, JSON.stringify(value));
       } else {
         window.localStorage.removeItem(storageKey);
       }
-  //  }, 2000);
+    }, 1000);
 
-    // return () => clearInterval(i);
-    /*
     return () => {
       if (t) {
         clearTimeout(t);
       }
     };
-    */
   }, [value]);
 
   return [
