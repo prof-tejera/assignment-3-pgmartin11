@@ -100,14 +100,7 @@ const WorkoutView = () => {
   }
 
   const isWorkoutDone = isWorkoutCompleted(timers);
-
   const pauseLabel = isPaused ? "Resume" : "Pause";
-
-console.log('activeTimerIdx', activeTimerIdx);
-console.log('******* WorkoutView: isStopped', isStopped);
-
-const workoutConfig = searchParams.get('myWorkout') === null ? [] : JSON.parse(decodeURIComponent(searchParams.get('myWorkout')));
-console.log('**** workoutConfig',workoutConfig);
 
   return (
     <>
