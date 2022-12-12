@@ -156,7 +156,7 @@ const InnerEditTimer = ({ timer, pos }) => {
 
 InnerEditTimer.propTypes = {
   timer:  PropTypes.object.isRequired, 
-  pos: PropTypes.number.isRequired,
+  pos: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 const EditTimer = () => {
