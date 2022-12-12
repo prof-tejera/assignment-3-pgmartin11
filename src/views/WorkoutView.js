@@ -71,11 +71,6 @@ const WorkoutView = () => {
   const workoutRunningTime = useRef(0);
 
   useEffect(() => {
-    // ensure the timer index is set to start of workout queue
-    if (activeTimerIdx == null) { setActiveTimerIdx(0); }
-  }, []);
-
-  useEffect(() => {
     if (isStopped) {
       workoutRunningTime.current = calcWorkoutTime(timers);
       setRemainingTime(workoutRunningTime.current);
@@ -110,6 +105,9 @@ const WorkoutView = () => {
 
 console.log('activeTimerIdx', activeTimerIdx);
 console.log('******* WorkoutView: isStopped', isStopped);
+
+const workoutConfig = searchParams.get('myWorkout') === null ? [] : JSON.parse(decodeURIComponent(searchParams.get('myWorkout')));
+console.log('**** workoutConfig',workoutConfig);
 
   return (
     <>
