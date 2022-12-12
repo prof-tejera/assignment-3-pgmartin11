@@ -74,7 +74,7 @@ const HistoryComponent = ({ workout }) => {
 };
 
 HistoryComponent.propTypes = {
-  workout: PropTypes.array.isRequired,
+  workout: PropTypes.object.isRequired,
 };
 
 export default HistoryComponent;
