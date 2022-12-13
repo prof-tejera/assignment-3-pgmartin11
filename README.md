@@ -50,6 +50,9 @@ We will be grading based on the features listed above and overall code quality
 
 [Deployment instructions](https://github.com/prof-tejera/react-deployment-code#github-actions)
 
+- Deployed at https://prof-tejera.github.io/assignment-3-pgmartin11/
+
 ## Bonus
 
 - Declare proptypes on all components you have created (5pt)
+- Proptypes added for all components (Pete Martin)
