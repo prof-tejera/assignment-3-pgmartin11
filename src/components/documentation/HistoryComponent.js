@@ -54,13 +54,20 @@ const HistoryComponent = ({ workout }) => {
               const { timerHrs, timerMins, timerSecs } = calcHMS(count);
               const { timerHrs: totalHrs, timerMins: totalMins, timerSecs: totalSecs } = calcHMS(timer.timerSecs);
               const numRounds = timer.roundStartVal != '' ? timer.roundStartVal : 'N/A';
-              const numIntervals = timer.intervalEndVal != '' ? timer.intervalEndVal : 'N/A';
+              
+              let intervalDisplay;
+              if (timer.intervalStartVal != '') {
+                const { timerHrs: intervalHrs, timerMins: intervalMins, timerSecs: intervalSecs } = calcHMS(timer.intervalStartVal);
+                intervalDisplay = `${intervalHrs}:${intervalMins}:${intervalSecs}`;
+              } else {
+                intervalDisplay = 'N/A';
+              }
 
               return (
                 <tr key={i}>
                   <td>{timer.title}</td>
                   <td>{timerHrs}:{timerMins}:{timerSecs}</td>
-                  <td>{numIntervals}</td>
+                  <td>{intervalDisplay}</td>
                   <td>{numRounds}</td>
                   <td>{totalHrs}:{totalMins}:{totalSecs}</td>
                 </tr>

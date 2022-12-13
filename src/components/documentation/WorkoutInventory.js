@@ -59,7 +59,7 @@ const WorkoutInventory = () => {
               let intervalDisplay;
               if (timer.intervalStartVal != '') {
                 const { timerHrs: intervalHrs, timerMins: intervalMins, timerSecs: intervalSecs } = calcHMS(timer.intervalStartVal);
-                intervalDisplay = `${timerHrs}:${timerMins}:${timerSecs}`;
+                intervalDisplay = `${intervalHrs}:${intervalMins}:${intervalSecs}`;
               } else {
                 intervalDisplay = 'N/A';
               }
