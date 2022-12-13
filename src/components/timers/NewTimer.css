@@ -41,7 +41,7 @@ button.add-timer-submit {
 
 @media (min-width: 855px) {
   .config-panel {
-    max-width: 28%;
+    min-width: 20%;
     margin-right: 6em;
     margin-left: 0;
     float: right;
