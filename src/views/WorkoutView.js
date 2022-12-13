@@ -15,6 +15,7 @@ import {
 import { TimerContext } from "../components/timers/TimerProvider";
 import DisplayTime from "../components/generic/DisplayTime";
 
+
 const Timers = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,6 +58,8 @@ const WorkoutView = () => {
     setPaused,
     isStopped,
     setStopped,
+    workoutRunningTime, 
+    setWorkoutRunningTime,
     activeTimerIdx,
     setActiveTimerIdx,
     timers,
@@ -68,12 +71,11 @@ const WorkoutView = () => {
     setSearchParams,
   } = useContext(TimerContext);
 
-  const workoutRunningTime = useRef(0);
-
   useEffect(() => {
     if (isStopped) {
-      workoutRunningTime.current = calcWorkoutTime(timers);
-      setRemainingTime(workoutRunningTime.current);
+      const woTime = calcWorkoutTime(timers);
+      setWorkoutRunningTime(woTime);
+      setRemainingTime(woTime);
     }
   }, [timers, isStopped]);
 
@@ -175,7 +177,7 @@ const WorkoutView = () => {
                   }
 
                   setRemainingTime(
-                    workoutRunningTime.current -
+                    workoutRunningTime -
                       calcTotalFastForwardTime(timers, activeTimerIdx)
                   );
                 }

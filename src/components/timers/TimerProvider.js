@@ -19,6 +19,7 @@ const TimerProvider = ({ children }) => {
   const [history, setHistory] = usePersistedStatePolling('history', []);
   const [isPaused, setPaused] = usePersistedStatePolling('isPaused', false);
   const [isStopped, setStopped] = usePersistedStatePolling('isStopped', true);
+  const [workoutRunningTime, setWorkoutRunningTime] = usePersistedStatePolling('workoutRunningTime', 0);
 
   const markTimerComplete = () => {
     const newTs = timers.map((timer, i) => {
@@ -98,6 +99,8 @@ const TimerProvider = ({ children }) => {
         setPaused,
         isStopped,
         setStopped,
+        workoutRunningTime, 
+        setWorkoutRunningTime,
         activeTimerIdx,
         setActiveTimerIdx,
         timers,
