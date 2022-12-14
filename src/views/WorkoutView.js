@@ -156,7 +156,7 @@ const WorkoutView = () => {
                 setCount(null);
                 setRound(null);
                 setInterval(null);
-                setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(timers)) });
+                setSearchParams({ myWorkout: encodeURIComponent(JSON.stringify(newTs)) });
               }}
             />
             <TimerBtn
