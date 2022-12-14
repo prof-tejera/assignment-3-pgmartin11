@@ -1,7 +1,7 @@
 import React, { useState, createContext } from "react";
 import { useSearchParams } from 'react-router-dom';
 import { timers } from "../../views/WorkoutView";
-import { usePersistedStatePolling } from '../../hooks';
+import { usePersistedStateModified } from '../../hooks';
 import { formattedDateTime, positionTimer } from '../../utils/helpers';
 export const TimerContext = createContext({});
 
@@ -10,16 +10,16 @@ const TimerProvider = ({ children }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const workoutConfig = searchParams.get('myWorkout') === null ? [] : JSON.parse(decodeURIComponent(searchParams.get('myWorkout')));
 
-  const [count, setCount] = usePersistedStatePolling('count', null);
-  const [round, setRound] = usePersistedStatePolling('round', null);
-  const [interval, setInterv] = usePersistedStatePolling('interval', null);
-  const [remainingTime, setRemainingTime] = usePersistedStatePolling('remainingTime', 0);
-  const [activeTimerIdx, setActiveTimerIdx] = usePersistedStatePolling('activeTimerIdx', null);
+  const [count, setCount] = usePersistedStateModified('count', null);
+  const [round, setRound] = usePersistedStateModified('round', null);
+  const [interval, setInterv] = usePersistedStateModified('interval', null);
+  const [remainingTime, setRemainingTime] = usePersistedStateModified('remainingTime', 0);
+  const [activeTimerIdx, setActiveTimerIdx] = usePersistedStateModified('activeTimerIdx', null);
   const [timers, setTimers] = useState(workoutConfig);
-  const [history, setHistory] = usePersistedStatePolling('history', []);
-  const [isPaused, setPaused] = usePersistedStatePolling('isPaused', false);
-  const [isStopped, setStopped] = usePersistedStatePolling('isStopped', true);
-  const [workoutRunningTime, setWorkoutRunningTime] = usePersistedStatePolling('workoutRunningTime', 0);
+  const [history, setHistory] = usePersistedStateModified('history', []);
+  const [isPaused, setPaused] = usePersistedStateModified('isPaused', false);
+  const [isStopped, setStopped] = usePersistedStateModified('isStopped', true);
+  const [workoutRunningTime, setWorkoutRunningTime] = usePersistedStateModified('workoutRunningTime', 0);
 
   const markTimerComplete = () => {
     const newTs = timers.map((timer, i) => {
