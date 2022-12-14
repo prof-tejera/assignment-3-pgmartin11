@@ -119,7 +119,8 @@ const InnerEditTimer = ({ timer, pos }) => {
       <h1>Edit Timer</h1>
       <h2>{timer.title} Timer</h2>
       <div className="setter-wrapper">{setters}</div>
-        {type && (<label>
+        {type && (
+          <label>
             <span className="type-label">Workout position:</span>
             <select
               value={timerPosition}
